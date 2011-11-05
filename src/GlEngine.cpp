@@ -1,8 +1,11 @@
 
 #include "GlEngine.h"
 
+ObjectMgr* GlEngine::p_mgr = 0;
+
 GlEngine::GlEngine()
 {
+    GlEngine::p_mgr = &(this->mgr);
 }
 
 GlEngine::~GlEngine()
@@ -21,6 +24,8 @@ void GlEngine::redraw()
     // clear buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
+    GlEngine::p_mgr->redraw();
+
     glutSwapBuffers();
 }
 
@@ -31,6 +36,23 @@ void GlEngine::setCamera(float posX, float posY, float posZ, float targetX, floa
     gluLookAt(posX, posY, posZ, targetX, targetY, targetZ, 0, 1, 0); // eye(x,y,z), focal(x,y,z), up(x,y,z)
 }
 
+void GlEngine::initLights()
+{
+    // set up light colors (ambient, diffuse, specular)
+    GLfloat lightKa[] = {.2f, .2f, .2f, 1.0f};  // ambient light
+    GLfloat lightKd[] = {.7f, .7f, .7f, 1.0f};  // diffuse light
+    GLfloat lightKs[] = {1, 1, 1, 1};           // specular light
+    glLightfv(GL_LIGHT0, GL_AMBIENT, lightKa);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightKd);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, lightKs);
+
+    // position the light
+    float lightPos[4] = {0, 0, 20, 1}; // positional light
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+
+    glEnable(GL_LIGHT0);                        // MUST enable each light source after configuration
+}
+
 void GlEngine::init(int argc, char **argv)
 {
     glutInit(&argc, argv);
@@ -39,8 +61,8 @@ void GlEngine::init(int argc, char **argv)
 
     this->windowHandle = glutCreateWindow(argv[0]);
     
-    // register GLUT callback functions
-    glutDisplayFunc(&redraw);
+    // register GLUT callback functions void (listenerTyp ::*p_func)()
+    glutDisplayFunc(&(GlEngine::redraw));
     //glutTimerFunc(100, timerCB, 100);             // redraw only every given millisec
     //glutReshapeFunc(reshapeCB);
     //glutKeyboardFunc(keyboardCB);
@@ -67,4 +89,13 @@ void GlEngine::init(int argc, char **argv)
     glClearStencil(0);                          // clear stencil buffer
     glClearDepth(1.0f);                         // 0 is near, 1 is far
     glDepthFunc(GL_LEQUAL);
+
+    this->initLights();
+}
+
+Leaf* GlEngine::addFeaf()
+{
+    Leaf* leaf = new Leaf();
+    mgr.add(leaf);
+    return leaf;
 }

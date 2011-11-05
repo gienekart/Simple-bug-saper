@@ -23,5 +23,20 @@ Leaf::~Leaf()
 
 void Leaf::draw()
 {
-  
+    glColor3f(1,1,1);
+
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glNormalPointer(GL_FLOAT, 0, &(normals[0]));
+    glVertexPointer(3, GL_FLOAT, 0, &(vertices[0]));
+
+    glPushMatrix();
+    glTranslatef(this->posX, this->posY, this->pozZ); // move to bottom-left
+
+    glDrawArrays(GL_QUADS, 0, 4);
+
+    glPopMatrix();
+
+    glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
+    glDisableClientState(GL_NORMAL_ARRAY);
 }
