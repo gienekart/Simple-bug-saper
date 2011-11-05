@@ -16,6 +16,8 @@ public:
     void init(int argc, char **argv);
     void changeMode(int );
     void run();
+    void setCamera(float posX, float posY, float posZ,
+                   float targetX, float targetY, float targetZ);
 
     enum GLMode
     {

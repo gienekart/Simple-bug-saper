@@ -10,12 +10,16 @@ public:
     Object();
     virtual ~Object();
 
-    virtual void setPosition(float x, float y, float z);
+    void setPosition(float x, float y, float z);
     virtual void draw();
 protected:
     std::vector<GLfloat> vertices;
     std::vector<GLfloat> normals;
     std::vector<GLushort> indexes;
+
+    float posX;
+    float posY;
+    float pozZ;
 };
 
 #endif

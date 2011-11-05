@@ -24,6 +24,13 @@ void GlEngine::redraw()
     glutSwapBuffers();
 }
 
+void GlEngine::setCamera(float posX, float posY, float posZ, float targetX, float targetY, float targetZ)
+{
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(posX, posY, posZ, targetX, targetY, targetZ, 0, 1, 0); // eye(x,y,z), focal(x,y,z), up(x,y,z)
+}
+
 void GlEngine::init(int argc, char **argv)
 {
     glutInit(&argc, argv);

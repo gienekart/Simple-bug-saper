@@ -3,13 +3,12 @@
 #ifndef LEAF_H
 #define LEAF_H
 
-class Leaf
+class Leaf : public Object
 {
 public:
     Leaf();
     virtual ~Leaf();
 
-    virtual void setPosition(float x, float y, float z);
     virtual void draw();
 };
 

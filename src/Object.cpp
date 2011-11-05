@@ -1,6 +1,6 @@
 #include "Object.h"
 
-Object::Object()
+Object::Object():posX(0.0f),posY(0.0f), pozZ(0.0f)
 {
 
 }
