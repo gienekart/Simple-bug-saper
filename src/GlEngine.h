@@ -4,6 +4,9 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
+#ifndef GLENGINE_H
+#define GLENGINE_H
+
 class GlEngine
 {
 public:
@@ -26,3 +29,5 @@ private:
     static const int height = 300;
     static const int width = 400;
 };
+
+#endif

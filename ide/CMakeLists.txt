@@ -13,10 +13,16 @@ include_directories (/usr/include)
 
 set(HDRS_bugper
   ${src_DIR}/GlEngine.h
+  ${src_DIR}/Object.h
+  ${src_DIR}/ObjectMgr.h
+  ${src_DIR}/Leaf.h
 )
 set(SRCS_bugper
   ${src_DIR}/main.cpp
+  ${src_DIR}/Object.cpp
   ${src_DIR}/GlEngine.cpp
+  ${src_DIR}/ObjectMgr.cpp
+  ${src_DIR}/Leaf.cpp
 )
 
 add_executable(bugper ${HDRS_bugper} ${SRCS_bugper})
