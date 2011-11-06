@@ -3,6 +3,7 @@ project(bugper)
 
 set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type (Debug|Release|Test)")
 set(src_DIR ${bugper_SOURCE_DIR}/../src)
+set(BIN_DIR ${bugper_SOURCE_DIR}/../bin)
 
 include_directories(/usr/X11R6/include/)
 link_directories(/usr/X11R6/lib)
@@ -10,6 +11,7 @@ SET(EXTRA_LIBS GL X11 GLU glut)
 
 include_directories (${include_DIR})
 include_directories (/usr/include)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR}/${CMAKE_BUILD_TYPE})
 
 set(HDRS_bugper
   ${src_DIR}/GlEngine.h
