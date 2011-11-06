@@ -21,6 +21,7 @@ public:
                    float targetX, float targetY, float targetZ);
 
     Leaf* addFeaf();
+    static GLuint png_texture(char *filename);
 
     enum GLMode
     {

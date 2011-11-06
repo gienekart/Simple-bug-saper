@@ -1,5 +1,6 @@
 
 #include "GlEngine.h"
+#include "load_png.h"
 
 ObjectMgr* GlEngine::p_mgr = 0;
 
@@ -26,19 +27,6 @@ void GlEngine::redraw()
 
     glPushMatrix();
     GlEngine::p_mgr->redraw();
-
-    glBegin(GL_QUADS);
-        // face v0-v1-v2-v3
-        glNormal3f(0,0,1);
-        glColor3f(1,1,1);
-        glVertex3f(1,1,1);
-        glColor3f(1,1,0);
-        glVertex3f(-1,1,1);
-        glColor3f(1,0,0);
-        glVertex3f(-1,-1,1);
-        glColor3f(1,0,1);
-        glVertex3f(1,-1,1);
-    glEnd();
 
     glPopMatrix();
 
@@ -121,6 +109,27 @@ void GlEngine::init(int argc, char **argv)
     glMatrixMode(GL_MODELVIEW);
 
     this->initLights();
+}
+
+GLuint GlEngine::png_texture(char *filename)
+{
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	GLuint tex;
+	glGenTextures(1, &tex);
+	glBindTexture(GL_TEXTURE_2D, tex);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+	int w, h;
+	GLubyte *pixels = (GLubyte *)load_png(filename, &w, &h);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+	free(pixels);
+
+	return tex;
 }
 
 Leaf* GlEngine::addFeaf()
