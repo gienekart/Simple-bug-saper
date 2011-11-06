@@ -9,7 +9,7 @@ set(LIB_DIR ${bugper_SOURCE_DIR}/../lib)
 include_directories(/usr/X11R6/include/)
 link_directories(/usr/X11R6/lib)
 link_directories(/usr/lib)
-SET(EXTRA_LIBS GL X11 GLU glut png)
+SET(EXTRA_LIBS GL X11 GLU glut png glee)
 
 include_directories (${include_DIR})
 include_directories (/usr/include)

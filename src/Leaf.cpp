@@ -4,11 +4,38 @@
 
 using namespace std;
 
+GLuint Leaf::shaderNum = 0;
+
 GLfloat verticesTable[] = {1,1,1,  -1,1,1,  -1,-1,1,  1,-1,1};
 GLfloat normalsTable[] = {0,0,1,  0,0,1,  0,0,1,  0,0,1};
 GLfloat colorsTable[] = {1,1,1,  1,1,0,  1,0,0,  1,0,1};
 GLushort coordTable[] = {0,0,  0,1, 1,1,  1,0};
 GLushort indexesTable[] = {0,1,2,3};
+
+// a simple vertex shader source
+// this just rotates a quad 45°
+static const char *vertex_source = {
+"void main(){"
+"  float PI = 3.14159265358979323846264;"
+"  float angle = 45.0;"
+"  float rad_angle = angle*PI/180.0;"
+""
+"  vec4 a = gl_Vertex;"
+"  vec4 b = a;"
+""
+"  b.x = a.x*cos(rad_angle) - a.y*sin(rad_angle);"
+"  b.y = a.y*cos(rad_angle) + a.x*sin(rad_angle);"
+"gl_Position = gl_ModelViewProjectionMatrix*b;"
+"}"
+};
+
+// a simple fragment shader source
+// this change the fragment's color by yellow color
+static const char *fragment_source = {
+"void main(void){"
+"   gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);"
+"}"
+};
 
 Leaf::Leaf()
 {
@@ -21,6 +48,8 @@ Leaf::Leaf()
     vector<GLfloat> tmp5(coordTable, coordTable + sizeof(coordTable) / sizeof(GLfloat));
     this->coords = tmp5;
     this->textureNumber = GlEngine::png_texture("monkey.png");
+    if(Leaf::shaderNum == 0)
+      Leaf::shaderNum = GlEngine::load_shader(NULL, fragment_source);
 }
 
 Leaf::~Leaf()

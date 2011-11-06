@@ -22,6 +22,7 @@ public:
 
     Leaf* addFeaf();
     static GLuint png_texture(char *filename);
+    static GLuint load_shader(const char *vertexProg, const char *fragmentProg);
 
     enum GLMode
     {
@@ -33,6 +34,7 @@ private:
     static void redraw();
     void initLights();
     static void iddle();
+    static char * load_program_string(const char *filename);
 
     ObjectMgr mgr;
 

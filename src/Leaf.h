@@ -10,6 +10,9 @@ public:
     virtual ~Leaf();
 
     virtual void draw();
+private:
+
+    static GLuint shaderNum;
 };
 
 #endif
