@@ -24,9 +24,30 @@ void GlEngine::redraw()
     // clear buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
+    glPushMatrix();
     GlEngine::p_mgr->redraw();
 
+    glBegin(GL_QUADS);
+        // face v0-v1-v2-v3
+        glNormal3f(0,0,1);
+        glColor3f(1,1,1);
+        glVertex3f(1,1,1);
+        glColor3f(1,1,0);
+        glVertex3f(-1,1,1);
+        glColor3f(1,0,0);
+        glVertex3f(-1,-1,1);
+        glColor3f(1,0,1);
+        glVertex3f(1,-1,1);
+    glEnd();
+
+    glPopMatrix();
+
     glutSwapBuffers();
+}
+
+void GlEngine::iddle()
+{
+    redraw();
 }
 
 void GlEngine::setCamera(float posX, float posY, float posZ, float targetX, float targetY, float targetZ)
@@ -68,27 +89,36 @@ void GlEngine::init(int argc, char **argv)
     //glutKeyboardFunc(keyboardCB);
     //glutMouseFunc(mouseCB);
     //glutMotionFunc(mouseMotionCB);
+    glutIdleFunc(&(GlEngine::iddle));
     
-    glShadeModel(GL_SMOOTH);                    // shading mathod: GL_SMOOTH or GL_FLAT
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);      // 4-byte pixel alignment
+    //glShadeModel(GL_SMOOTH);                    // shading mathod: GL_SMOOTH or GL_FLAT
+    //glPixelStorei(GL_UNPACK_ALIGNMENT, 4);      // 4-byte pixel alignment
 
     // enable /disable features
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
     //glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     //glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_TEXTURE_2D);
-    glEnable(GL_CULL_FACE);
+    //glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_LIGHTING);
+    //glEnable(GL_TEXTURE_2D);
+    //glEnable(GL_CULL_FACE);
 
      // track material ambient and diffuse from surface color, call it before glEnable(GL_COLOR_MATERIAL)
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    glEnable(GL_COLOR_MATERIAL);
+    //glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    //glEnable(GL_COLOR_MATERIAL);
 
     glClearColor(0, 0, 0, 0);                   // background color
-    glClearStencil(0);                          // clear stencil buffer
+    //glClearStencil(0);                          // clear stencil buffer
     glClearDepth(1.0f);                         // 0 is near, 1 is far
     glDepthFunc(GL_LEQUAL);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();                                // Reset The Projection Matrix
+
+    gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);        // Calculate The Aspect Ratio Of The Window
+    glMatrixMode(GL_MODELVIEW);
 
     this->initLights();
 }

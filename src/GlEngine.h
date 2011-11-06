@@ -31,6 +31,7 @@ private:
     static ObjectMgr* p_mgr;
     static void redraw();
     void initLights();
+    static void iddle();
 
     ObjectMgr mgr;
 

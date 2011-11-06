@@ -15,6 +15,7 @@ public:
 protected:
     std::vector<GLfloat> vertices;
     std::vector<GLfloat> normals;
+    std::vector<GLfloat> colors;
     std::vector<GLushort> indexes;
 
     float posX;
