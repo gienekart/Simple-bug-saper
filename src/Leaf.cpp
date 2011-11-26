@@ -9,8 +9,8 @@ GLuint Leaf::shaderNum = 0;
 GLfloat verticesTable[] = {1,1,1,  -1,1,1,  -1,-1,1,  1,-1,1};
 GLfloat normalsTable[] = {0,0,1,  0,0,1,  0,0,1,  0,0,1};
 GLfloat colorsTable[] = {1,1,1,  1,1,0,  1,0,0,  1,0,1};
-GLushort coordTable[] = {0,0,  0,1, 1,1,  1,0};
-GLushort indexesTable[] = {0,1,2,3};
+GLfloat coordTable[] = {0,1,  1,1,  1,0, 0,0};
+GLushort indexesTable[] = {0,1,2,0,2,3};
 
 // a simple vertex shader source
 // this just rotates a quad 45°
@@ -47,7 +47,7 @@ Leaf::Leaf()
     this->indexes = tmp3;
     vector<GLfloat> tmp5(coordTable, coordTable + sizeof(coordTable) / sizeof(GLfloat));
     this->coords = tmp5;
-    this->textureNumber = GlEngine::png_texture("monkey.png");
+    this->textureNumber = GlEngine::png_texture("lisc.png");
     if(Leaf::shaderNum == 0)
       Leaf::shaderNum = GlEngine::load_shader(NULL, fragment_source);
 }
@@ -60,22 +60,23 @@ Leaf::~Leaf()
 void Leaf::draw()
 {
     glBindTexture(GL_TEXTURE_2D, this->textureNumber);
-    glEnableClientState(GL_NORMAL_ARRAY);
+    //glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    glNormalPointer(GL_FLOAT, 0, &(normals[0]));
+    //glNormalPointer(GL_FLOAT, 0, &(normals[0]));
     glVertexPointer(3, GL_FLOAT, 0, &(vertices[0]));
     glTexCoordPointer(2, GL_FLOAT, 0, &(coords[0]));
 
     glPushMatrix();
     glTranslatef(this->posX, this->posY, this->pozZ); // move to bottom-left
 
-    glDrawArrays(GL_QUADS, 0, 4);
+    //glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_SHORT, &(indexes[0]));
 
     glPopMatrix();
 
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
-    glDisableClientState(GL_NORMAL_ARRAY);
+    //glDisableClientState(GL_NORMAL_ARRAY);
     glFlush();
 }
