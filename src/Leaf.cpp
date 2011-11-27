@@ -14,27 +14,18 @@ GLfloat coordTable[] = {0,1,  1,1,  1,0, 0,0};
 GLushort indexesTable[] = {0,1,2,0,2,3};
 
 // a simple vertex shader source
-// this just rotates a quad 45°
 static const char *vertex_source = {
 "void main(){"
-"  float PI = 3.14159265358979323846264;"
-"  float angle = 45.0;"
-"  float rad_angle = angle*PI/180.0;"
-""
-"  vec4 a = gl_Vertex;"
-"  vec4 b = a;"
-""
-"  b.x = a.x*cos(rad_angle) - a.y*sin(rad_angle);"
-"  b.y = a.y*cos(rad_angle) + a.x*sin(rad_angle);"
-"gl_Position = gl_ModelViewProjectionMatrix*b;"
 "}"
 };
 
 // a simple fragment shader source
 // this change the fragment's color by yellow color
 static const char *fragment_source = {
+"uniform sampler2D texture;"
+//"varying vec2 tex_coords;"
 "void main(void){"
-"   gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);"
+"   gl_FragColor = texture2D(texture, gl_TexCoord[0].st);"
 "}"
 };
 
@@ -60,18 +51,31 @@ Leaf::~Leaf()
 
 void Leaf::draw()
 {
+    //Enable shader
     glUseProgram(Leaf::shaderNum);
-    glBindTexture(GL_TEXTURE_2D, this->textureNumber);
-    //glEnableClientState(GL_NORMAL_ARRAY);
+    GLint loc = glGetUniformLocationARB(Leaf::shaderNum,"texture");
+    glActiveTexture(GL_TEXTURE0);
+    glUniform1iARB(loc, 0);
+    
+    //enable texture
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE0, this->textureNumber);
+    
+    //enable object properietes
+    glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    //glNormalPointer(GL_FLOAT, 0, &(normals[0]));
+    
+    //filling data
+    glNormalPointer(GL_FLOAT, 0, &(normals[0]));
     glVertexPointer(3, GL_FLOAT, 0, &(vertices[0]));
     glTexCoordPointer(2, GL_FLOAT, 0, &(coords[0]));
 
+    //setting position
     glPushMatrix();
     glTranslatef(this->posX, this->posY, this->pozZ); // move to bottom-left
 
+    //rendering
     //glDrawArrays(GL_TRIANGLES, 0, 3);
     glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_SHORT, &(indexes[0]));
 
@@ -79,6 +83,6 @@ void Leaf::draw()
 
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
-    //glDisableClientState(GL_NORMAL_ARRAY);
-    glFlush();
+    glDisableClientState(GL_NORMAL_ARRAY);
+    //glFlush();
 }
