@@ -1,6 +1,7 @@
 #include "Leaf.h"
 #include "GlEngine.h"
 #include <iostream>
+#include <GLee.h>
 
 using namespace std;
 
@@ -59,6 +60,7 @@ Leaf::~Leaf()
 
 void Leaf::draw()
 {
+    glUseProgram(Leaf::shaderNum);
     glBindTexture(GL_TEXTURE_2D, this->textureNumber);
     //glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_VERTEX_ARRAY);

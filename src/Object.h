@@ -1,4 +1,5 @@
 #include <vector>
+#include <GLee.h>
 #include <GL/glut.h>
 
 #ifndef OBJECT_H

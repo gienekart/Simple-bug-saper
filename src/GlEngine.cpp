@@ -16,7 +16,6 @@ static void (*my_glMultiTexCoord3fARB)(GLenum, GLfloat, GLfloat, GLfloat) = NULL
 
 GlEngine::GlEngine()
 {
-    GlEngine::p_mgr = &(this->mgr);
 }
 
 GlEngine::~GlEngine()
@@ -74,11 +73,15 @@ void GlEngine::initLights()
 
 void GlEngine::init(int argc, char **argv)
 {
+    //window creation
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(width, height);
 
     this->windowHandle = glutCreateWindow(argv[0]);
+    
+    //Object manager initialization
+    GlEngine::p_mgr = new ObjectMgr();
     
     // register GLUT callback functions void (listenerTyp ::*p_func)()
     glutDisplayFunc(&(GlEngine::redraw));
@@ -115,7 +118,7 @@ void GlEngine::init(int argc, char **argv)
     gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);        // Calculate The Aspect Ratio Of The Window
     glMatrixMode(GL_MODELVIEW);
 
-    this->initLights();
+    //this->initLights();
 }
 
 GLuint GlEngine::png_texture(char *filename)
@@ -190,6 +193,6 @@ GLuint GlEngine::load_shader(const char* vertexProg, const char* fragmentProg)
 Leaf* GlEngine::addFeaf()
 {
     Leaf* leaf = new Leaf();
-    mgr.add(leaf);
+    GlEngine::p_mgr->add(leaf);
     return leaf;
 }

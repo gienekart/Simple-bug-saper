@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <GLee.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
@@ -35,8 +36,6 @@ private:
     void initLights();
     static void iddle();
     static char * load_program_string(const char *filename);
-
-    ObjectMgr mgr;
 
     int windowHandle;
     static const int height = 300;
