@@ -7,7 +7,7 @@
 class Texture: public Resource
 {
 public:
-  Texture(std::string name);
+  Texture(std::string name, GLuint textureNumber);
   ~Texture();
   
   virtual void Render();

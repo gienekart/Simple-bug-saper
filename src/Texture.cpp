@@ -1,6 +1,7 @@
 #include "Texture.h"
 
-Texture::Texture(std::string name):Resource(name)
+Texture::Texture(std::string name, GLuint textureNumber):Resource(name), 
+    textureNumber(textureNumber)
 {
   //TODO Make some reading texture with given name
 }
