@@ -5,3 +5,6 @@ vertex shaders for some simple special effects.
 
 version 0.0
 - something what is compillable.
+
+version 0.1
+- one fragment shader is working with one simple model with no lights
