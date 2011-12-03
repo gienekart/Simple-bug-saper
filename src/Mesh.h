@@ -8,6 +8,7 @@
 
 class Mesh: public Resource
 {
+public:  
   struct meshData
   {
     std::vector<GLfloat> vertexPosition;
@@ -16,7 +17,6 @@ class Mesh: public Resource
     std::vector<GLfloat> vertexIndexes;
   };
   
-public:  
   Mesh(std::string name, const Mesh::meshData* data, Material* material);
   virtual ~Mesh();
   
