@@ -21,6 +21,10 @@ set(HDRS_bugper
   ${src_DIR}/ObjectMgr.h
   ${src_DIR}/Leaf.h
   ${src_DIR}/load_png.h
+  ${src_DIR}/Resource.h
+  ${src_DIR}/Mesh.h
+  ${src_DIR}/Material.h
+  ${src_DIR}/Texture.h
 )
 set(SRCS_bugper
   ${src_DIR}/main.cpp
@@ -29,6 +33,9 @@ set(SRCS_bugper
   ${src_DIR}/ObjectMgr.cpp
   ${src_DIR}/Leaf.cpp
   ${src_DIR}/load_png.cpp
+  ${src_DIR}/Mesh.cpp
+  ${src_DIR}/Material.cpp
+  ${src_DIR}/Texture.cpp
 )
 
 add_executable(bugper ${HDRS_bugper} ${SRCS_bugper})
