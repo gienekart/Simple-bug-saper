@@ -1,7 +1,7 @@
-#include "Leaf.h"
-#include "GlEngine.h"
+
 #include <iostream>
-#include <GLee.h>
+#include "GlEngine.h"
+#include "Leaf.h"
 
 using namespace std;
 
@@ -29,17 +29,17 @@ static const char *fragment_source = {
 "}"
 };
 
-Leaf::Leaf()
+Leaf::Leaf():Object(NULL)
 {
     vector<GLfloat> tmp(verticesTable, verticesTable + sizeof(verticesTable) / sizeof(GLfloat));
-    this->vertices = tmp;
+    //this->vertices = tmp;
     vector<GLfloat> tmp2(normalsTable, normalsTable + sizeof(normalsTable) / sizeof(GLfloat));
-    this->normals = tmp2;
+    //this->normals = tmp2;
     vector<GLushort> tmp3(indexesTable, indexesTable + sizeof(indexesTable) / sizeof(GLushort));
-    this->indexes = tmp3;
+    //this->indexes = tmp3;
     vector<GLfloat> tmp5(coordTable, coordTable + sizeof(coordTable) / sizeof(GLfloat));
-    this->coords = tmp5;
-    this->textureNumber = GlEngine::png_texture("lisc.png");
+    //this->coords = tmp5;
+    //this->textureNumber = GlEngine::png_texture("lisc.png");
     if(Leaf::shaderNum == 0)
       Leaf::shaderNum = GlEngine::load_shader(NULL, fragment_source);
 }
@@ -59,7 +59,7 @@ void Leaf::draw()
     
     //enable texture
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE0, this->textureNumber);
+    //glBindTexture(GL_TEXTURE0, this->textureNumber);
     
     //enable object properietes
     glEnableClientState(GL_NORMAL_ARRAY);
@@ -67,17 +67,17 @@ void Leaf::draw()
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     
     //filling data
-    glNormalPointer(GL_FLOAT, 0, &(normals[0]));
-    glVertexPointer(3, GL_FLOAT, 0, &(vertices[0]));
-    glTexCoordPointer(2, GL_FLOAT, 0, &(coords[0]));
+    //glNormalPointer(GL_FLOAT, 0, &(normals[0]));
+    //glVertexPointer(3, GL_FLOAT, 0, &(vertices[0]));
+    //glTexCoordPointer(2, GL_FLOAT, 0, &(coords[0]));
 
     //setting position
     glPushMatrix();
-    glTranslatef(this->posX, this->posY, this->pozZ); // move to bottom-left
+    //glTranslatef(this->posX, this->posY, this->pozZ); // move to bottom-left
 
     //rendering
     //glDrawArrays(GL_TRIANGLES, 0, 3);
-    glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_SHORT, &(indexes[0]));
+    //glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_SHORT, &(indexes[0]));
 
     glPopMatrix();
 

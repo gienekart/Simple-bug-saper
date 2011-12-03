@@ -32,6 +32,6 @@ void ObjectMgr::redraw()
 
     for(;current != end; current++)
     {
-        (*current)->draw();
+        (*current)->Render();
     }
 }

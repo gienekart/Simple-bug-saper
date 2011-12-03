@@ -1,29 +1,31 @@
 #include <vector>
-#include <GLee.h>
-#include <GL/glut.h>
+#include <GL/gl.h>
+#include "Mesh.h"
 
 #ifndef OBJECT_H
 #define OBJECT_H
 
-class Object
-{
+class Object {
 public:
-    Object();
-    virtual ~Object();
+  struct position
+  {
+    float x;
+    float y;
+    float z;
+  };
+  
+  Object(Mesh* mesh);
+  Object(Mesh* mesh, float x, float y, float z);
+  Object(Mesh* mesh, Object::position pos);
+  virtual ~Object();
 
-    void setPosition(float x, float y, float z);
-    virtual void draw();
+  void setPosition(float x, float y, float z);
+  Object::position getPosition();
+  virtual void Render();
 protected:
-    std::vector<GLfloat> vertices;
-    std::vector<GLfloat> normals;
-    std::vector<GLfloat> coords;
-    std::vector<GLushort> indexes;
+  Mesh* mesh;
 
-    float posX;
-    float posY;
-    float pozZ;
-
-    GLuint textureNumber;
+  Object::position pos;
 };
 
 #endif
