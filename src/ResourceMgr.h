@@ -10,7 +10,7 @@ public:
   ResourceMgr();
   ~ResourceMgr();
   Resource* getResource(const std::string& name);
-private:
+protected:
   virtual Resource* createResource(const std::string& name)=0;
   std::map<std::string, Resource*> objects;
 };

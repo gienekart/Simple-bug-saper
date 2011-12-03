@@ -27,6 +27,10 @@ set(HDRS_bugper
   ${src_DIR}/Shader.h
   ${src_DIR}/Texture.h
   ${src_DIR}/ResourceMgr.h
+  ${src_DIR}/MeshMgr.h
+  ${src_DIR}/MaterialMgr.h
+  ${src_DIR}/ShaderMgr.h
+  ${src_DIR}/TextureMgr.h
 )
 set(SRCS_bugper
   ${src_DIR}/main.cpp
@@ -40,6 +44,10 @@ set(SRCS_bugper
   ${src_DIR}/Shader.cpp
   ${src_DIR}/Texture.cpp
   ${src_DIR}/ResourceMgr.cpp
+  ${src_DIR}/MeshMgr.cpp
+  ${src_DIR}/MaterialMgr.cpp
+  ${src_DIR}/ShaderMgr.cpp
+  ${src_DIR}/TextureMgr.cpp
 )
 
 add_executable(bugper ${HDRS_bugper} ${SRCS_bugper})
