@@ -52,6 +52,7 @@ Leaf::~Leaf()
 void Leaf::draw()
 {
     //Enable shader
+    //TODO put thse 2 lines into shader
     glUseProgram(Leaf::shaderNum);
     GLint loc = glGetUniformLocationARB(Leaf::shaderNum,"texture");
     glActiveTexture(GL_TEXTURE0);

@@ -24,6 +24,7 @@ set(HDRS_bugper
   ${src_DIR}/Resource.h
   ${src_DIR}/Mesh.h
   ${src_DIR}/Material.h
+  ${src_DIR}/Shader.h
   ${src_DIR}/Texture.h
 )
 set(SRCS_bugper
@@ -35,6 +36,7 @@ set(SRCS_bugper
   ${src_DIR}/load_png.cpp
   ${src_DIR}/Mesh.cpp
   ${src_DIR}/Material.cpp
+  ${src_DIR}/Shader.cpp
   ${src_DIR}/Texture.cpp
 )
 
