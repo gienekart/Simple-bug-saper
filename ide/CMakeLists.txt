@@ -26,6 +26,7 @@ set(HDRS_bugper
   ${src_DIR}/Material.h
   ${src_DIR}/Shader.h
   ${src_DIR}/Texture.h
+  ${src_DIR}/ResourceMgr.h
 )
 set(SRCS_bugper
   ${src_DIR}/main.cpp
@@ -38,6 +39,7 @@ set(SRCS_bugper
   ${src_DIR}/Material.cpp
   ${src_DIR}/Shader.cpp
   ${src_DIR}/Texture.cpp
+  ${src_DIR}/ResourceMgr.cpp
 )
 
 add_executable(bugper ${HDRS_bugper} ${SRCS_bugper})
