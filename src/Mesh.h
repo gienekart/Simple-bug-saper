@@ -14,7 +14,7 @@ public:
     std::vector<GLfloat> vertexPosition;
     std::vector<GLfloat> textureCoords;
     std::vector<GLfloat> vertexNormals;
-    std::vector<GLfloat> vertexIndexes;
+    std::vector<GLushort> vertexIndexes;
   };
   
   Mesh(std::string name, const Mesh::meshData* data);
@@ -26,7 +26,7 @@ private:
     std::vector<GLfloat> vertexPosition;
     std::vector<GLfloat> textureCoords;
     std::vector<GLfloat> vertexNormals;
-    std::vector<GLfloat> vertexIndexes;
+    std::vector<GLushort> vertexIndexes;
 };
 
 #endif 

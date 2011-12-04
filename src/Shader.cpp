@@ -12,6 +12,11 @@ Shader::~Shader()
   
 }
 
+const GLuint Shader::getShaderNumber()
+{
+  return this->shaderProgramNumber;
+}
+
 void Shader::Render()
 {
   glUseProgram(this->shaderProgramNumber);

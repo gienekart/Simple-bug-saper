@@ -18,6 +18,8 @@ public:
   Shader(std::string name, Shader::shaderData* data);
   virtual ~Shader();
   
+  const GLuint getShaderNumber();
+  
   virtual void Render();
   
 private:

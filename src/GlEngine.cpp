@@ -39,6 +39,7 @@ void GlEngine::redraw()
 
     glPopMatrix();
 
+    glFlush();
     glutSwapBuffers();
 }
 
@@ -105,7 +106,7 @@ void GlEngine::init(int argc, char **argv)
     //glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
     //glEnable(GL_COLOR_MATERIAL);
 
-    glClearColor(0, 0, 0, 0);                   // background color
+    glClearColor(0, 0, 0, 1);                   // background color
     //glClearStencil(0);                          // clear stencil buffer
     glClearDepth(1.0f);                         // 0 is near, 1 is far
     glDepthFunc(GL_LEQUAL);

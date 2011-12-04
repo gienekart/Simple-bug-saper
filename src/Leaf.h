@@ -8,12 +8,6 @@ class Leaf : public Object
 public:
     Leaf();
     virtual ~Leaf();
-
-    virtual void Render();
-private:
-
-    static GLuint shaderNum;
-    Material* material;
 };
 
 #endif

@@ -26,36 +26,41 @@ Resource* MeshMgr::createResource(const std::string& name)
   data>>vertexes;
   int faces;
   data>>faces;
+  float value;
   
   //prepering data structure
   Mesh::meshData meshData;
-  meshData.vertexPosition.reserve(vertexes*3);
-  meshData.vertexNormals.reserve(vertexes*3);
-  meshData.textureCoords.reserve(vertexes*2);
-  meshData.vertexIndexes.reserve(faces*3);
+  meshData.vertexPosition.reserve(vertexes*3+1);
+  meshData.vertexNormals.reserve(vertexes*3+1);
+  meshData.textureCoords.reserve(vertexes*2+1);
+  meshData.vertexIndexes.reserve(faces*3+1);
   
   //filling structure with position's data
   for(int i=0; i<vertexes*3; i++)
   {
-    data >> meshData.vertexPosition[i];
+    data >> value;
+    meshData.vertexPosition.push_back(value);
   }
   
   //filling structure with normal's data
   for(int i=0; i<vertexes*3; i++)
   {
-    data >> meshData.vertexNormals[i];
+    data >> value;
+    meshData.vertexNormals.push_back(value);
   }
   
   //filling structure with texture coord's data
   for(int i=0; i<vertexes*2; i++)
   {
-    data >> meshData.textureCoords[i];
+    data >> value;
+    meshData.textureCoords.push_back(value);
   }
   
   //filling structure with vertex index's data
   for(int i=0; i<faces*3; i++)
   {
-    data >> meshData.vertexIndexes[i];
+    data >> value;
+    meshData.vertexIndexes.push_back(value);
   }
   
   data.close();

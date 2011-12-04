@@ -1,4 +1,3 @@
-
 #include "Mesh.h"
 
 Mesh::Mesh(std::string name, const Mesh::meshData* data) :
@@ -6,7 +5,7 @@ Resource(name),
 vertexPosition(data->vertexPosition),
 textureCoords(data->textureCoords),
 vertexNormals(data->vertexNormals),
-vertexIndexes(data->vertexPosition)
+vertexIndexes(data->vertexIndexes)
 {
 }
 
@@ -28,7 +27,6 @@ void Mesh::Render()
   glTexCoordPointer(2, GL_FLOAT, 0, &(this->textureCoords[0]));
 
   //rendering
-  //glDrawArrays(GL_TRIANGLES, 0, 3);
   glDrawElements(GL_TRIANGLES, this->vertexIndexes.size(), GL_UNSIGNED_SHORT,
       &(this->vertexIndexes[0]));
 

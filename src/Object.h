@@ -14,9 +14,9 @@ public:
     float z;
   };
   
-  Object(Mesh* mesh);
-  Object(Mesh* mesh, float x, float y, float z);
-  Object(Mesh* mesh, Object::position pos);
+  Object();
+  Object(float x, float y, float z);
+  Object(Object::position pos);
   virtual ~Object();
 
   void setPosition(float x, float y, float z);
@@ -24,6 +24,7 @@ public:
   virtual void Render();
 protected:
   Mesh* mesh;
+  Material* material;
 
   Object::position pos;
 };
