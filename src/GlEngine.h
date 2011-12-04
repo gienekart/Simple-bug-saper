@@ -22,7 +22,7 @@ public:
                    float targetX, float targetY, float targetZ);
 
     Leaf* addFeaf();
-    static GLuint png_texture(char *filename);
+    static GLuint png_texture(const char *filename);
     static GLuint load_shader(const char *vertexProg, const char *fragmentProg);
 
     enum GLMode

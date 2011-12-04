@@ -1,6 +1,6 @@
+#include "GlEngine.h"
 #include "TextureMgr.h"
 #include "Texture.h"
-#include "GlEngine.h"
 
 Resource* TextureMgr::createResource(const std::string& name)
 {
@@ -11,4 +11,5 @@ Resource* TextureMgr::createResource(const std::string& name)
   GLuint textureNumber = GlEngine::png_texture(fileName.c_str());
   
   Texture* texture = new Texture(name, textureNumber);
+  return texture;
 }

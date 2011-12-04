@@ -8,7 +8,7 @@
 #define PNG_SIG_BYTES 8
 //#define uint8_t char
 
-char * load_png(char *name, int *width, int *height)
+char * load_png(const char *name, int *width, int *height)
 {
 	FILE *png_file = fopen(name, "rb");
 	assert(png_file);

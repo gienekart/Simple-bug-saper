@@ -13,6 +13,7 @@ public:
 private:
 
     static GLuint shaderNum;
+    Mesh* mesh;
 };
 
 #endif

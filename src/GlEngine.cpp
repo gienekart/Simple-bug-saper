@@ -121,7 +121,7 @@ void GlEngine::init(int argc, char **argv)
     //this->initLights();
 }
 
-GLuint GlEngine::png_texture(char *filename)
+GLuint GlEngine::png_texture(const char *filename)
 {
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
