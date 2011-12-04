@@ -2,7 +2,6 @@
 
 Material::Material(std::string name, Material::materialData* data) : Resource(name), data(*data)
 {
-  //TODO Fill null pointers in data by texture "black.png"
 }
 
 Material::~Material()

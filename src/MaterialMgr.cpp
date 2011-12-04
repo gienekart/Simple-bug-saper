@@ -1,6 +1,7 @@
 #include "MaterialMgr.h"
 #include "Material.h"
 #include "ShaderMgr.h"
+#include "TextureMgr.h"
 #include <fstream>
 
 std::string color0("color0");
@@ -44,7 +45,7 @@ Resource* MaterialMgr::createResource(const std::string& name)
     // Check with type of shader program is defined and read it's source.
     if(slot == color0)
     {
-      
+      materialData.color = (Texture*)TextureMgr::getMgr()->getResource(value);
     }
     else if (slot == shader)
     {
