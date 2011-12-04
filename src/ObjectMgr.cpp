@@ -2,6 +2,18 @@
 
 using namespace std;
 
+ObjectMgr* ObjectMgr::mgr = NULL;
+
+ObjectMgr* ObjectMgr::getMgr()
+{
+  if (ObjectMgr::mgr == NULL)
+  {
+    ObjectMgr::mgr = new ObjectMgr();
+  }
+  
+  return ObjectMgr::mgr;
+}
+
 ObjectMgr::ObjectMgr()
 {
 

@@ -2,6 +2,18 @@
 #include "MeshMgr.h"
 #include "Mesh.h"
 
+MeshMgr* MeshMgr::mgr = NULL;
+
+MeshMgr* MeshMgr::getMgr()
+{
+  if (MeshMgr::mgr == NULL)
+  {
+    MeshMgr::mgr = new MeshMgr();
+  }
+  
+  return MeshMgr::mgr;
+}
+
 Resource* MeshMgr::createResource(const std::string& name)
 {
   //opening file with mesh data
@@ -35,7 +47,7 @@ Resource* MeshMgr::createResource(const std::string& name)
   }
   
   //filling structure with texture coord's data
-  for(int i=0; i<vertexes*3; i++)
+  for(int i=0; i<vertexes*2; i++)
   {
     data >> meshData.textureCoords[i];
   }

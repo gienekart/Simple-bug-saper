@@ -27,7 +27,6 @@ private:
     std::vector<GLfloat> textureCoords;
     std::vector<GLfloat> vertexNormals;
     std::vector<GLfloat> vertexIndexes;
-    Material* material;
 };
 
 #endif 

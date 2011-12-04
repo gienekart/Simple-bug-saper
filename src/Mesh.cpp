@@ -6,8 +6,8 @@ Resource(name),
 vertexPosition(data->vertexPosition),
 textureCoords(data->textureCoords),
 vertexNormals(data->vertexNormals),
-vertexIndexes(data->vertexPosition),
-material(material)
+vertexIndexes(data->vertexPosition)//,
+//material(material)
 {
 }
 
@@ -17,8 +17,6 @@ Mesh::~Mesh()
 
 void Mesh::Render()
 {
-  //setting up material
-  this->material->Render();
 
   //enable object properietes
   glEnableClientState(GL_NORMAL_ARRAY);

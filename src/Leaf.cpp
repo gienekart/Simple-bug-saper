@@ -2,6 +2,7 @@
 #include <iostream>
 #include "GlEngine.h"
 #include "Leaf.h"
+#include "MeshMgr.h"
 
 using namespace std;
 
@@ -31,6 +32,8 @@ static const char *fragment_source = {
 
 Leaf::Leaf():Object(NULL)
 {
+  this->mesh = (Mesh*)MeshMgr::getMgr()->getResource("leaf");
+  /*
     vector<GLfloat> tmp(verticesTable, verticesTable + sizeof(verticesTable) / sizeof(GLfloat));
     //this->vertices = tmp;
     vector<GLfloat> tmp2(normalsTable, normalsTable + sizeof(normalsTable) / sizeof(GLfloat));
@@ -42,6 +45,7 @@ Leaf::Leaf():Object(NULL)
     //this->textureNumber = GlEngine::png_texture("lisc.png");
     if(Leaf::shaderNum == 0)
       Leaf::shaderNum = GlEngine::load_shader(NULL, fragment_source);
+   * */
 }
 
 Leaf::~Leaf()
@@ -49,8 +53,15 @@ Leaf::~Leaf()
 
 }
 
-void Leaf::draw()
-{
+void Leaf::Render()
+{ 
+  //setting up material
+  this->material->Render();
+  
+  //render geometry with current material sets
+  this->mesh->Render();
+  
+  /*
     //Enable shader
     //TODO put thse 2 lines into shader
     glUseProgram(Leaf::shaderNum);
@@ -86,4 +97,5 @@ void Leaf::draw()
     glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
     glDisableClientState(GL_NORMAL_ARRAY);
     //glFlush();
+   * */
 }

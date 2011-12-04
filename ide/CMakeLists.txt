@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 2.6)
-project(bugper)
+project(bugperProject)
 
 set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type (Debug|Release|Test)")
-set(src_DIR ${bugper_SOURCE_DIR}/../src)
-set(BIN_DIR ${bugper_SOURCE_DIR}/../bin)
-set(LIB_DIR ${bugper_SOURCE_DIR}/../lib)
+set(src_DIR ${bugperProject_SOURCE_DIR}/../src)
+set(BIN_DIR ${bugperProject_SOURCE_DIR}/../bin)
+set(LIB_DIR ${bugperProject_SOURCE_DIR}/../lib)
 
 include_directories(/usr/X11R6/include/)
 link_directories(/usr/X11R6/lib)

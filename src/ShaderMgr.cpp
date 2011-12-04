@@ -7,6 +7,18 @@
 std::string fragment("fragment");
 std::string vertex("vertex");
 
+ShaderMgr* ShaderMgr::mgr = NULL;
+
+ShaderMgr* ShaderMgr::getMgr()
+{
+  if (ShaderMgr::mgr == NULL)
+  {
+    ShaderMgr::mgr = new ShaderMgr();
+  }
+  
+  return ShaderMgr::mgr;
+}
+
 Resource* ShaderMgr::createResource(const std::string& name)
 {
   //opening file with shader data

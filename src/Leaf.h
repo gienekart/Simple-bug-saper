@@ -9,11 +9,11 @@ public:
     Leaf();
     virtual ~Leaf();
 
-    virtual void draw();
+    virtual void Render();
 private:
 
     static GLuint shaderNum;
-    Mesh* mesh;
+    Material* material;
 };
 
 #endif

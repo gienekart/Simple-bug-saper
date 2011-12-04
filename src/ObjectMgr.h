@@ -10,6 +10,8 @@ class ObjectMgr
 public:
     ObjectMgr();
     ~ObjectMgr();
+    
+  static ObjectMgr* getMgr();
 
     void add(Object* objectToAdd);
     void remove(Object* objectToRemove);
@@ -17,6 +19,7 @@ public:
     void redraw();
 private:
     std::list<Object*> loadedObjects;
+  static ObjectMgr* mgr;
 };
 
 #endif

@@ -7,6 +7,18 @@ std::string color1("color1");
 std::string normal("normal");
 std::string shader("shader");
 
+MaterialMgr* MaterialMgr::mgr = NULL;
+
+MaterialMgr* MaterialMgr::getMgr()
+{
+  if (MaterialMgr::mgr == NULL)
+  {
+    MaterialMgr::mgr = new MaterialMgr();
+  }
+  
+  return MaterialMgr::mgr;
+}
+
 Resource* MaterialMgr::createResource(const std::string& name)
 {
   //opening file with material data

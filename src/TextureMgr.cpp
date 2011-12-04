@@ -2,6 +2,19 @@
 #include "TextureMgr.h"
 #include "Texture.h"
 
+TextureMgr* TextureMgr::mgr = NULL;
+
+TextureMgr* TextureMgr::getMgr()
+{
+  if (TextureMgr::mgr == NULL)
+  {
+    TextureMgr::mgr = new TextureMgr();
+  }
+  
+  return TextureMgr::mgr;
+}
+
+
 Resource* TextureMgr::createResource(const std::string& name)
 {
   //opening file with mesh data
