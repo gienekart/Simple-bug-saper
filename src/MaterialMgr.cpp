@@ -1,5 +1,6 @@
 #include "MaterialMgr.h"
 #include "Material.h"
+#include "ShaderMgr.h"
 #include <fstream>
 
 std::string color0("color0");
@@ -22,11 +23,15 @@ MaterialMgr* MaterialMgr::getMgr()
 Resource* MaterialMgr::createResource(const std::string& name)
 {
   //opening file with material data
-  std::string fileExtenction(".shad");
+  std::string fileExtenction(".mat");
   std::string fileName = name + fileExtenction;
   std::ifstream data(fileName.c_str());
   
   Material::materialData materialData;
+  materialData.color = NULL;
+  materialData.color2 = NULL;
+  materialData.normal = NULL;
+  materialData.shader = NULL;
   
     
   while (data.good())
@@ -43,7 +48,10 @@ Resource* MaterialMgr::createResource(const std::string& name)
     }
     else if (slot == shader)
     {
-      
+      materialData.shader = (Shader*)ShaderMgr::getMgr()->getResource(value);
     }
   }
+  
+  Material* material = new Material(name, &materialData);
+  return material;
 }

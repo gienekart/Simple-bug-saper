@@ -59,4 +59,7 @@ Resource* MeshMgr::createResource(const std::string& name)
   }
   
   data.close();
+  
+  Mesh* mesh = new Mesh(name, &meshData);
+  return mesh;
 }

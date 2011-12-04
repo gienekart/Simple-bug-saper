@@ -15,6 +15,9 @@ Resource* ResourceMgr::getResource(const std::string& name)
   Resource* res = this->objects[name];
   if(res == NULL)
   {
-    this->createResource(name);
+    res = this->createResource(name);
+    this->objects[name] = res;
   }
+  
+  return res;
 }

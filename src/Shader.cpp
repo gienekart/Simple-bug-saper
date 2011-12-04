@@ -3,7 +3,8 @@
 
 Shader::Shader(std::string name, Shader::shaderData* data):Resource(name)
 {
-  //TODO make propper shader loading
+  this->shaderProgramNumber = GlEngine::load_shader(data->vertexShader.c_str(), 
+      data->fragmentShader.c_str()); 
 }
 
 Shader::~Shader()

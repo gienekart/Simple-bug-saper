@@ -149,30 +149,36 @@ GLuint GlEngine::load_shader(const char* vertexProg, const char* fragmentProg)
    GLuint   fragment_shader; // a handler to fragment shader. This is used internally too
    
    program_object  = glCreateProgram();    // creating a program object
-   vertex_shader   = glCreateShader(GL_VERTEX_SHADER);   // creating a vertex shader object
-   fragment_shader = glCreateShader(GL_FRAGMENT_SHADER); // creating a fragment shader object
    //printProgramInfoLog(program_object);
-
-   if (vertexProg != NULL)
+   
+   if(vertexProg[0] != '\0') //if code is not an empty line
    {
-     glShaderSource(vertex_shader, 1, &vertexProg, NULL); // assigning the vertex source
+     vertex_shader   = glCreateShader(GL_VERTEX_SHADER);   // creating a vertex shader object
+     if (vertexProg != NULL)
+     {
+       glShaderSource(vertex_shader, 1, &vertexProg, NULL); // assigning the vertex source
 
-     // compiling and attaching the vertex shader onto program
-     glCompileShader(vertex_shader);
-     glAttachShader(program_object, vertex_shader);
-     //printProgramInfoLog(program_object);   // verifies if all this is ok so far
+       // compiling and attaching the vertex shader onto program
+       glCompileShader(vertex_shader);
+       glAttachShader(program_object, vertex_shader);
+       //printProgramInfoLog(program_object);   // verifies if all this is ok so far
+     }
    }
-
-   if (fragmentProg != NULL)
+   
+   if (fragmentProg[0] != '\0') //if code is not an empty line
    {
-     glShaderSource(fragment_shader, 1, &fragmentProg, NULL); // assigning the fragment source
-     //printProgramInfoLog(program_object);   // verifies if all this is ok so far
+     fragment_shader = glCreateShader(GL_FRAGMENT_SHADER); // creating a fragment shader object
+     if (fragmentProg != NULL)
+     {
+       glShaderSource(fragment_shader, 1, &fragmentProg, NULL); // assigning the fragment source
+       //printProgramInfoLog(program_object);   // verifies if all this is ok so far
 
 
-     // compiling and attaching the fragment shader onto program
-     glCompileShader(fragment_shader);
-     glAttachShader(program_object, fragment_shader);
-     //printProgramInfoLog(program_object);   // verifies if all this is ok so far
+       // compiling and attaching the fragment shader onto program
+       glCompileShader(fragment_shader);
+       glAttachShader(program_object, fragment_shader);
+       //printProgramInfoLog(program_object);   // verifies if all this is ok so far
+     }
    }
 
    // Link the shaders into a complete GLSL program.

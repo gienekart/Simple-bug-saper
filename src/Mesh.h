@@ -17,7 +17,7 @@ public:
     std::vector<GLfloat> vertexIndexes;
   };
   
-  Mesh(std::string name, const Mesh::meshData* data, Material* material);
+  Mesh(std::string name, const Mesh::meshData* data);
   virtual ~Mesh();
   
   virtual void Render();

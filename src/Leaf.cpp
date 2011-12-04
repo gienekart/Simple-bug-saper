@@ -3,6 +3,7 @@
 #include "GlEngine.h"
 #include "Leaf.h"
 #include "MeshMgr.h"
+#include "MaterialMgr.h"
 
 using namespace std;
 
@@ -33,6 +34,7 @@ static const char *fragment_source = {
 Leaf::Leaf():Object(NULL)
 {
   this->mesh = (Mesh*)MeshMgr::getMgr()->getResource("leaf");
+  this->material = (Material*)MaterialMgr::getMgr()->getResource("leaf");
   /*
     vector<GLfloat> tmp(verticesTable, verticesTable + sizeof(verticesTable) / sizeof(GLfloat));
     //this->vertices = tmp;

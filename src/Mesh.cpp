@@ -1,13 +1,12 @@
 
 #include "Mesh.h"
 
-Mesh::Mesh(std::string name, const Mesh::meshData* data, Material* material) :
+Mesh::Mesh(std::string name, const Mesh::meshData* data) :
 Resource(name),
 vertexPosition(data->vertexPosition),
 textureCoords(data->textureCoords),
 vertexNormals(data->vertexNormals),
-vertexIndexes(data->vertexPosition)//,
-//material(material)
+vertexIndexes(data->vertexPosition)
 {
 }
 

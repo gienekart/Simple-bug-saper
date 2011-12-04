@@ -22,8 +22,7 @@ ShaderMgr* ShaderMgr::getMgr()
 Resource* ShaderMgr::createResource(const std::string& name)
 {
   //opening file with shader data
-  std::string fileExtenction(".shad");
-  std::string fileName = name + fileExtenction;
+  std::string fileName = name;
   std::ifstream data(fileName.c_str());
   
   //creation of structure
@@ -56,4 +55,7 @@ Resource* ShaderMgr::createResource(const std::string& name)
   }
   
   data.close();
+  
+  Shader* shader = new Shader(name, &shaderData);
+  return shader;
 }
