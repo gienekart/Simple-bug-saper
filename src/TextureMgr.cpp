@@ -21,7 +21,7 @@ Resource* TextureMgr::createResource(const std::string& name)
   std::string fileExtenction(".png");
   std::string fileName = name + fileExtenction;
   
-  GLuint textureNumber = GlEngine::png_texture(fileName.c_str());
+  GLuint textureNumber = glHelp::MakePngTexture(fileName.c_str());
   
   Texture* texture = new Texture(name, textureNumber);
   return texture;

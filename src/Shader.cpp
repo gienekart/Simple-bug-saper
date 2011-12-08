@@ -3,7 +3,7 @@
 
 Shader::Shader(std::string name, Shader::shaderData* data):Resource(name)
 {
-  this->shaderProgramNumber = GlEngine::load_shader(data->vertexShader.c_str(), 
+  this->shaderProgramNumber = glHelp::LoadShader(data->vertexShader.c_str(), 
       data->fragmentShader.c_str()); 
 }
 

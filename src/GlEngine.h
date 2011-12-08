@@ -1,9 +1,6 @@
 
 #include <stdio.h>
-#include <GLee.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glut.h>
+#include "GLHelpers.h"
 #include "ObjectMgr.h"
 
 #ifndef GLENGINE_H

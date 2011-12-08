@@ -34,6 +34,7 @@ set(HDRS_bugper
   ${src_DIR}/Timer.h
   ${src_DIR}/button.h
   ${src_DIR}/button1.h
+  ${src_DIR}/GLHelpers.h
 )
 set(SRCS_bugper
   ${src_DIR}/main.cpp
@@ -54,6 +55,7 @@ set(SRCS_bugper
   ${src_DIR}/Timer.cpp
   ${src_DIR}/button.cpp
   ${src_DIR}/button1.cpp
+  ${src_DIR}/GLHelpers.cpp
 )
 
 add_executable(bugper ${HDRS_bugper} ${SRCS_bugper})
