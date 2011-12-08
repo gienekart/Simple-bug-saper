@@ -28,6 +28,8 @@ Resource* ShaderMgr::createResource(const std::string& name)
   
   //creation of structure
   Shader::shaderData shaderData;
+  shaderData.fragmentShader = 0;
+  shaderData.vertexShader = 0;
   
   while (data.good())
   {
@@ -39,19 +41,27 @@ Resource* ShaderMgr::createResource(const std::string& name)
     // Check with type of shader program is defined and read it's source.
     if(type == fragment)
     {
+      Shader* fragment = (Shader*)this->createShaderPart(code, GL_FRAGMENT_PROGRAM_ARB);
+      shaderData.fragmentShader = fragment->getShaderNumber();
+      /*
       std::ifstream source(code.c_str());
       std::stringstream buffer;
       buffer << source.rdbuf();
       shaderData.fragmentShader = buffer.str();
       source.close();
+       * */
     }
     else if (type == vertex)
     {
+      Shader* vertex = (Shader*)this->createShaderPart(code, GL_VERTEX_PROGRAM_ARB);
+      shaderData.vertexShader = vertex->getShaderNumber();
+      /*
       std::ifstream source(code.c_str());
       std::stringstream buffer;
       buffer << source.rdbuf();
       shaderData.vertexShader = buffer.str();
       source.close();
+       * */
     }
   }
   
@@ -59,4 +69,19 @@ Resource* ShaderMgr::createResource(const std::string& name)
   
   Shader* shader = new Shader(name, &shaderData);
   return shader;
+}
+
+Resource* ShaderMgr::createShaderPart(const std::string& name, GLuint type)
+{
+  std::string ShaderCode;
+  
+  std::ifstream source(name.c_str());
+  std::stringstream buffer;
+  buffer << source.rdbuf();
+  ShaderCode = buffer.str();
+  source.close();
+  
+  Resource* shaderPart = new Shader(name, type, ShaderCode.c_str());
+  this->add(shaderPart);
+  return shaderPart;
 }

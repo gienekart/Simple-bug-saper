@@ -11,11 +11,15 @@ class Shader: public Resource
 public:  
   struct shaderData
   {
-    std::string fragmentShader;
-    std::string vertexShader;
+    GLuint fragmentShader;
+    GLuint vertexShader;
   };
   
+  //Constructor for Shader program
   Shader(std::string name, Shader::shaderData* data);
+  
+  //Constructor for fragment/vertex shader
+  Shader(std::string name, GLuint type, const char * code);
   virtual ~Shader();
   
   const GLuint getShaderNumber();
