@@ -31,6 +31,9 @@ set(HDRS_bugper
   ${src_DIR}/MaterialMgr.h
   ${src_DIR}/ShaderMgr.h
   ${src_DIR}/TextureMgr.h
+  ${src_DIR}/Timer.h
+  ${src_DIR}/button.h
+  ${src_DIR}/button1.h
 )
 set(SRCS_bugper
   ${src_DIR}/main.cpp
@@ -48,6 +51,9 @@ set(SRCS_bugper
   ${src_DIR}/MaterialMgr.cpp
   ${src_DIR}/ShaderMgr.cpp
   ${src_DIR}/TextureMgr.cpp
+  ${src_DIR}/Timer.cpp
+  ${src_DIR}/button.cpp
+  ${src_DIR}/button1.cpp
 )
 
 add_executable(bugper ${HDRS_bugper} ${SRCS_bugper})

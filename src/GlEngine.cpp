@@ -5,8 +5,8 @@
 #include <GLee.h>
 #include "GlEngine.h"
 #include "load_png.h"
+#include "Timer.h"
 
-ObjectMgr* GlEngine::p_mgr = 0;
 static void (*my_glGenProgramsARB)(GLuint, GLuint *) = NULL;
 static void (*my_glBindProgramARB)(GLuint, GLuint) = NULL;
 static void (*my_glProgramStringARB)(GLuint, GLuint, GLint, const GLbyte *) = NULL;
@@ -31,15 +31,16 @@ void GlEngine::run()
 
 void GlEngine::redraw()
 {
+  ObjectMgr::getMgr()->update();
     // clear buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
     glPushMatrix();
-    GlEngine::p_mgr->redraw();
+    ObjectMgr::getMgr()->redraw();
 
     glPopMatrix();
 
-    glFlush();
+    glFinish();
     glutSwapBuffers();
 }
 
@@ -81,9 +82,6 @@ void GlEngine::init(int argc, char **argv)
 
     this->windowHandle = glutCreateWindow(argv[0]);
     
-    //Object manager initialization
-    GlEngine::p_mgr = new ObjectMgr();
-    
     // register GLUT callback functions void (listenerTyp ::*p_func)()
     glutDisplayFunc(&(GlEngine::redraw));
     //glutTimerFunc(100, timerCB, 100);             // redraw only every given millisec
@@ -97,7 +95,6 @@ void GlEngine::init(int argc, char **argv)
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
     glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-    glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_CULL_FACE);
@@ -120,6 +117,8 @@ void GlEngine::init(int argc, char **argv)
     glMatrixMode(GL_MODELVIEW);
 
     //this->initLights();
+    
+    //initialize other components
 }
 
 GLuint GlEngine::png_texture(const char *filename)
@@ -195,11 +194,4 @@ GLuint GlEngine::load_shader(const char* vertexProg, const char* fragmentProg)
    }
 
    return program_object;
-}
-
-Leaf* GlEngine::addFeaf()
-{
-    Leaf* leaf = new Leaf();
-    GlEngine::p_mgr->add(leaf);
-    return leaf;
 }

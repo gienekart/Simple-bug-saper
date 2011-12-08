@@ -21,7 +21,6 @@ public:
     void setCamera(float posX, float posY, float posZ,
                    float targetX, float targetY, float targetZ);
 
-    Leaf* addFeaf();
     static GLuint png_texture(const char *filename);
     static GLuint load_shader(const char *vertexProg, const char *fragmentProg);
 
@@ -31,7 +30,6 @@ public:
         EdgeMode
     };
 private:
-    static ObjectMgr* p_mgr;
     static void redraw();
     void initLights();
     static void iddle();

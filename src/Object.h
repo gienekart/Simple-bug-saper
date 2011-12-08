@@ -21,10 +21,16 @@ public:
 
   void setPosition(float x, float y, float z);
   Object::position getPosition();
+  
+  void setScale(float scale);
+  float getScale();
+  
+  virtual void Update(float detlatime);
   virtual void Render();
 protected:
   Mesh* mesh;
   Material* material;
+  float scale;
 
   Object::position pos;
 };

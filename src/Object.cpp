@@ -1,21 +1,21 @@
 #include "GlEngine.h"
 #include "Object.h"
 
-Object::Object() : mesh(NULL), material(NULL)
+Object::Object() : mesh(NULL), material(NULL), scale(1)
 {
   this->pos.x = 0;
   this->pos.y = 0;
   this->pos.z = 0;
 }
 
-Object::Object(float x, float y, float z) : mesh(NULL), material(NULL)
+Object::Object(float x, float y, float z) : mesh(NULL), material(NULL), scale(1)
 {
   this->pos.x = x;
   this->pos.y = y;
   this->pos.z = z;
 }
 
-Object::Object(Object::position pos) : mesh(NULL), material(NULL), pos(pos)
+Object::Object(Object::position pos) : mesh(NULL), material(NULL), pos(pos), scale(1)
 {
 
 }
@@ -30,6 +30,21 @@ void Object::setPosition(float x, float y, float z)
   this->pos.x = x;
   this->pos.y = y;
   this->pos.z = z;
+}
+
+void Object::setScale(float scale)
+{
+  this->scale;
+}
+
+float Object::getScale()
+{
+  return this->scale;
+}
+
+void Object::Update(float detlatime)
+{
+  
 }
 
 void Object::Render()
