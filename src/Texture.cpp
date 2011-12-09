@@ -12,11 +12,5 @@ Texture::~Texture()
 
 void Texture::Render()
 {
-  glBindTexture(this->lastChosenTextureNumber, this->textureNumber);
-}
-
-void Texture::Render(GLenum textureSlotNumber)
-{
-  this->lastChosenTextureNumber = textureSlotNumber;
-  Texture::Render();
+  glBindTexture(GL_TEXTURE_2D, this->textureNumber);
 }

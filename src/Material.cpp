@@ -22,19 +22,20 @@ void Material::Render()
   if(this->data.color != NULL)
   {
     GLuint texture = glGetUniformLocationARB(shaderNumber, "texture0");
-    this->data.color->Render(GL_TEXTURE0);
+    //glActiveTextureARB(GL_TEXTURE0_ARB);
+    this->data.color->Render();
     glUniform1iARB(texture, 0);
   }
   if(this->data.color2 != NULL)
   {
     //GLuint texture = glGetUniformLocationARB(shaderNumber, "texture0");
-    this->data.color2->Render(GL_TEXTURE1);
+    this->data.color2->Render();
     //glUniform1iARB(texture, 1);
   }
   if(this->data.normal != NULL)
   {
     //GLuint texture = glGetUniformLocationARB(shaderNumber, "texture0");
-    this->data.normal->Render(GL_TEXTURE2);
+    this->data.normal->Render();
     //glUniform1iARB(texture, 2);
   }
 }

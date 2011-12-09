@@ -12,8 +12,6 @@ public:
   
   virtual void Render();
   
-  void Render(GLenum textureSlotNumber);
-  
 private:
   GLuint textureNumber;
   GLenum lastChosenTextureNumber;  
