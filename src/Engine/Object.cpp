@@ -34,7 +34,7 @@ void Object::setPosition(float x, float y, float z)
 
 void Object::setScale(float scale)
 {
-  this->scale;
+  this->scale = scale;
 }
 
 float Object::getScale()
