@@ -10,18 +10,23 @@ Material::~Material()
 
 }
 
+GLuint Material::getShaderHandler()
+{
+  return this->data.shader->getShaderNumber();
+}
+
 void Material::Render()
 {
   //load shader
   this->data.shader->Render();
-  GLuint shaderNumber = this->data.shader->getShaderNumber();
+  GLuint shaderNumber = getShaderHandler();
   //enable texture
   glEnable(GL_TEXTURE_2D);
 
   //load textures to propper slots
   if(this->data.color != NULL)
   {
-    GLuint texture = glGetUniformLocationARB(shaderNumber, "texture0");
+    GLint texture = glGetUniformLocationARB(shaderNumber, "texture0");
     //glActiveTextureARB(GL_TEXTURE0_ARB);
     this->data.color->Render();
     glUniform1iARB(texture, 0);

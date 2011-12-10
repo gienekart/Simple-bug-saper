@@ -41,12 +41,12 @@ Resource* ShaderMgr::createResource(const std::string& name)
     // Check with type of shader program is defined and read it's source.
     if(type == fragment)
     {
-      Shader* fragment = (Shader*)this->createShaderPart(code, GL_FRAGMENT_PROGRAM_ARB);
+      Shader* fragment = (Shader*)this->createShaderPart(code, GL_FRAGMENT_SHADER_ARB);
       shaderData.fragmentShader = fragment->getShaderNumber();
     }
     else if (type == vertex)
     {
-      Shader* vertex = (Shader*)this->createShaderPart(code, GL_VERTEX_PROGRAM_ARB);
+      Shader* vertex = (Shader*)this->createShaderPart(code, GL_VERTEX_SHADER_ARB);
       shaderData.vertexShader = vertex->getShaderNumber();
     }
   }

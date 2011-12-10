@@ -110,7 +110,7 @@ GLuint glHelp::MakeShader(GLuint shaderType, const char* shaderCode)
 {
   GLuint shaderHandler;
   
-  shaderHandler = glCreateShader(GL_FRAGMENT_SHADER); // creating a fragment shader object
+  shaderHandler = glCreateShader(shaderType); // creating a fragment shader object
   if (shaderHandler != 0)
   {
     glShaderSource(shaderHandler, 1, &shaderCode, NULL); // assigning the fragment source

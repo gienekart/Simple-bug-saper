@@ -20,6 +20,8 @@ public:
   Material(std::string name, Material::materialData* data);
   virtual ~Material();
   
+  GLuint getShaderHandler();
+  
   virtual void Render();
   
 private:

@@ -31,6 +31,7 @@ protected:
   Mesh* mesh;
   Material* material;
   float scale;
+  float angle;
 
   Object::position pos;
 };

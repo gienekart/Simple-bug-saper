@@ -8,14 +8,14 @@ Object::Object() : mesh(NULL), material(NULL), scale(1)
   this->pos.z = 0;
 }
 
-Object::Object(float x, float y, float z) : mesh(NULL), material(NULL), scale(1)
+Object::Object(float x, float y, float z) : mesh(NULL), material(NULL), scale(1), angle(0)
 {
   this->pos.x = x;
   this->pos.y = y;
   this->pos.z = z;
 }
 
-Object::Object(Object::position pos) : mesh(NULL), material(NULL), pos(pos), scale(1)
+Object::Object(Object::position pos) : mesh(NULL), material(NULL), pos(pos), scale(1), angle(0)
 {
 
 }
@@ -55,6 +55,13 @@ void Object::Render()
 
   //setting up material
   this->material->Render();
+  
+  //Setting object scale
+  GLuint shader = this->material->getShaderHandler();
+  GLint scaleLocation = glGetUniformLocationARB(shader, "objectScale");
+  glUniform1fARB(scaleLocation, this->scale);
+  GLint angleLocation = glGetUniformLocationARB(shader, "objectAngle");
+  glUniform1fARB(angleLocation, this->angle);
 
   //render geometry with current material sets
   this->mesh->Render();

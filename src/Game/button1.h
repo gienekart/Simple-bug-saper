@@ -9,6 +9,10 @@ class Button_1: public Button
 public:
   Button_1();
   virtual ~Button_1();
+  
+  virtual void Update(float deltatime);
+private:
+  float time;  
 };
 
 #endif
