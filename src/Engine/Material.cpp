@@ -20,8 +20,6 @@ void Material::Render()
   //load shader
   this->data.shader->Render();
   GLuint shaderNumber = getShaderHandler();
-  //enable texture
-  glEnable(GL_TEXTURE_2D);
 
   //load textures to propper slots
   if(this->data.color != NULL)
