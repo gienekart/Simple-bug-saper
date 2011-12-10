@@ -43,7 +43,8 @@ void GlEngine::redraw()
 
     glFinish();
     glutSwapBuffers();
-    if(InputHandler::getInputHandler()->isPressedKey(27))  //if pressed ESC key
+    if((InputHandler::getInputHandler()->isPressedKey(InputHandler::ESC)) || //if pressed ESC key 
+        (InputHandler::getInputHandler()->isMouseClicked(InputHandler::MouseRightButton)))
     {
       exit(0);
     }
@@ -95,8 +96,8 @@ void GlEngine::init(int argc, char **argv)
     glutKeyboardUpFunc(&(InputHandler::keyUp));
     glutSpecialFunc(&(InputHandler::keySpecialUp));
     glutSpecialUpFunc(&(InputHandler::keySpecialPressed));
-    //glutMouseFunc(mouseCB);
-    //glutMotionFunc(mouseMotionCB);
+    glutMouseFunc(&(InputHandler::MouseButton));
+    glutMotionFunc(&(InputHandler::MouseMotion));
     glutIdleFunc(&(GlEngine::iddle));
 
     // enable /disable features

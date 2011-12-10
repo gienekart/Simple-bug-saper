@@ -1,7 +1,9 @@
 
 #include "Engine/InputHandler.h"
+#include <GL/glut.h>
 
 InputHandler* InputHandler::handler = NULL;
+const char InputHandler::ESC = 27;
 
 InputHandler* InputHandler::getInputHandler()
 {
@@ -12,12 +14,17 @@ InputHandler* InputHandler::getInputHandler()
   return InputHandler::handler;
 }
 
-InputHandler::InputHandler():pressedKeys(256), pressedSpecialKeys(256)
+InputHandler::InputHandler():pressedKeys(256), pressedSpecialKeys(256), 
+    pressedInMouse(MouseEnumSize)
 {
   for(int i=0; i<256; i++ )
   {
     pressedKeys[i] = false;
     pressedSpecialKeys[i] = false;
+  }
+  for(int i=0; i<MouseEnumSize; i++ )
+  {
+    pressedInMouse[i] = false;
   }
 }
 
@@ -54,4 +61,52 @@ bool InputHandler::isPressedKey(unsigned char keyCode)
 bool InputHandler::isPressedSpecial(int keyIndex)
 {
   return this->pressedSpecialKeys[keyIndex];
+}
+
+void InputHandler::MouseButton(int button, int state, int x, int y)
+{
+  // Respond to mouse button presses.
+  // If button1 pressed, mark this state so we know in motion function.
+  InputHandler* myhandler = InputHandler::handler;
+  if (button == GLUT_LEFT_BUTTON)
+  {
+    myhandler->pressedInMouse[MouseLeftButton] =
+        (state == GLUT_DOWN) ? true : false;
+  }
+  else if (button == GLUT_RIGHT_BUTTON)
+  {
+    myhandler->pressedInMouse[MouseRightButton] =
+        (state == GLUT_DOWN) ? true : false;
+  }
+  else if (button == GLUT_MIDDLE_BUTTON)
+  {
+    myhandler->pressedInMouse[MouseMiddleButton] =
+        (state == GLUT_DOWN) ? true : false;
+  }
+  myhandler->lastPosition.x = x;
+  myhandler->lastPosition.y = y;
+}
+
+void InputHandler::MouseMotion(int x, int y)
+{
+  // If button1 pressed, zoom in/out if mouse is moved up/down.
+  
+  InputHandler* myhandler = InputHandler::handler;
+  myhandler->lastMove.x = x;
+  myhandler->lastMove.y = y;
+}
+
+bool InputHandler::isMouseClicked(MouseKey key)
+{
+  return this->pressedInMouse[key];
+}
+
+Mouse2D InputHandler::getLastMouseMotion()
+{
+  return this->lastMove;
+}
+
+Mouse2D InputHandler::getLastMousePosition()
+{
+  return this->lastPosition;
 }
