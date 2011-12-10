@@ -23,6 +23,7 @@ set(HDRS_bugper
   ${game_src_DIR}/button.h
   ${game_src_DIR}/button1.h
   ${game_src_DIR}/ladybug.h
+  ${game_src_DIR}/Game.h
 )
 set(SRCS_bugper
   ${game_src_DIR}/main.cpp
@@ -30,6 +31,7 @@ set(SRCS_bugper
   ${game_src_DIR}/button.cpp
   ${game_src_DIR}/button1.cpp
   ${game_src_DIR}/ladybug.cpp
+  ${game_src_DIR}/Game.cpp
 )
 
 set(HDRS_littleGLEngine
@@ -50,6 +52,7 @@ set(HDRS_littleGLEngine
   ${engine_src_DIR}/Timer.h
   ${engine_src_DIR}/GLHelpers.h
   ${engine_src_DIR}/InputHandler.h
+  ${engine_src_DIR}/ExternLogic.h
 )
 set(SRCS_littleGLEngine
   ${engine_src_DIR}/Object.cpp

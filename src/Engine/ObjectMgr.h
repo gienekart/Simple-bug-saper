@@ -16,7 +16,7 @@ public:
     void add(Object* objectToAdd);
     void remove(Object* objectToRemove);
 
-    void update();
+    float update();
     void redraw();
 private:
     std::list<Object*> loadedObjects;

@@ -83,8 +83,7 @@ void InputHandler::MouseButton(int button, int state, int x, int y)
     myhandler->pressedInMouse[MouseMiddleButton] =
         (state == GLUT_DOWN) ? true : false;
   }
-  myhandler->lastPosition.x = x;
-  myhandler->lastPosition.y = y;
+  myhandler->RecalcMouseMove(x, y);
 }
 
 void InputHandler::MouseMotion(int x, int y)
@@ -92,8 +91,7 @@ void InputHandler::MouseMotion(int x, int y)
   // If button1 pressed, zoom in/out if mouse is moved up/down.
   
   InputHandler* myhandler = InputHandler::handler;
-  myhandler->lastMove.x = x;
-  myhandler->lastMove.y = y;
+  myhandler->RecalcMouseMove(x, y);
 }
 
 bool InputHandler::isMouseClicked(MouseKey key)
@@ -109,4 +107,19 @@ Mouse2D InputHandler::getLastMouseMotion()
 Mouse2D InputHandler::getLastMousePosition()
 {
   return this->lastPosition;
+}
+
+void InputHandler::RecalcMouseMove(Mouse2D newPosition)
+{
+  this->lastMove.x = newPosition.x - this->lastPosition.x;
+  this->lastMove.y = newPosition.y - this->lastPosition.y;
+  this->lastPosition = newPosition;
+}
+
+void InputHandler::RecalcMouseMove(int newX, int newY)
+{
+  this->lastMove.x = newX - this->lastPosition.x;
+  this->lastMove.y = newY - this->lastPosition.y;
+  this->lastPosition.x = newX;
+  this->lastPosition.y = newY;
 }

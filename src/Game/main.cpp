@@ -2,12 +2,15 @@
 #include "Game/Leaf.h"
 #include "Game/button1.h"
 #include "Game/ladybug.h"
+#include "Game/Game.h"
 
 int main( int argc, char* args[] ) 
 {
-    GlEngine engine;
-    engine.init(argc, args);
-    engine.setCamera(0, 10, 10, 0, 0, 0);
+    GlEngine* engine = GlEngine::getEngine();
+    engine->init(argc, args);
+    Game* game = new Game();
+    engine->setExternLogic(game);
+    //engine->setCamera(0, 10, 10, 0, 0, 0);
     Leaf* l = new Leaf();
     ObjectMgr::getMgr()->add(l);
     l->setScale(6);
@@ -16,6 +19,6 @@ int main( int argc, char* args[] )
     LadyBug* b = new LadyBug();
     b->setPosition(1,2,2);
     ObjectMgr::getMgr()->add(b);
-    engine.run();
+    engine->run();
     return 0;
 }

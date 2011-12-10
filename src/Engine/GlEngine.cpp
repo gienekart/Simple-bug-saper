@@ -13,6 +13,16 @@ static void (*my_glProgramStringARB)(GLuint, GLuint, GLint, const GLbyte *) = NU
 static void (*my_glActiveTextureARB)(GLenum) = NULL;
 static void (*my_glMultiTexCoord3fARB)(GLenum, GLfloat, GLfloat, GLfloat) = NULL;
 
+GlEngine* GlEngine::engine = NULL;
+GlEngine* GlEngine::getEngine()
+{
+  if (GlEngine::engine == NULL)
+  {
+    GlEngine::engine = new GlEngine();
+  }
+  return GlEngine::engine;
+}
+
 GlEngine::GlEngine()
 {
   //Initialize all critical singletons
@@ -30,9 +40,15 @@ void GlEngine::run()
     return;
 }
 
+void GlEngine::setExternLogic(ExternLogic* logicToCall)
+{
+  this->logicToCall = logicToCall;
+}
+
 void GlEngine::redraw()
 {
-  ObjectMgr::getMgr()->update();
+    float daltaTime = ObjectMgr::getMgr()->update();
+    GlEngine::engine->logicToCall->frameCall(daltaTime);
     // clear buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
@@ -43,8 +59,7 @@ void GlEngine::redraw()
 
     glFinish();
     glutSwapBuffers();
-    if((InputHandler::getInputHandler()->isPressedKey(InputHandler::ESC)) || //if pressed ESC key 
-        (InputHandler::getInputHandler()->isMouseClicked(InputHandler::MouseRightButton)))
+    if(InputHandler::getInputHandler()->isPressedKey(InputHandler::ESC)) //if pressed ESC key 
     {
       exit(0);
     }
@@ -98,6 +113,7 @@ void GlEngine::init(int argc, char **argv)
     glutSpecialUpFunc(&(InputHandler::keySpecialPressed));
     glutMouseFunc(&(InputHandler::MouseButton));
     glutMotionFunc(&(InputHandler::MouseMotion));
+    glutPassiveMotionFunc(&(InputHandler::MouseMotion));
     glutIdleFunc(&(GlEngine::iddle));
 
     // enable /disable features

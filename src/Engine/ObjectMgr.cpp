@@ -37,7 +37,7 @@ void ObjectMgr::remove(Object* objectToRemove)
     this->loadedObjects.remove(objectToRemove);
 }
 
-void ObjectMgr::update()
+float ObjectMgr::update()
 {
     Timer::getTimer()->updateTime();
     float deltaTime = Timer::getTimer()->getTimeFromLastUpdate();
@@ -52,6 +52,7 @@ void ObjectMgr::update()
     {
         (*current)->Update(deltaTime);
     } 
+    return deltaTime;
 }
 
 void ObjectMgr::redraw()

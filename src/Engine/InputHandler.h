@@ -41,6 +41,8 @@ public:
 private:
   InputHandler();
   static InputHandler* handler;
+  void RecalcMouseMove(Mouse2D newPosition);
+  void RecalcMouseMove(int newX, int newY);
   
   std::vector<bool> pressedKeys;
   std::vector<bool> pressedSpecialKeys;
