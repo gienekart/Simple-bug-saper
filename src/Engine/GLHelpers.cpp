@@ -1,4 +1,4 @@
-#include "GLHelpers.h"
+#include "Engine/GLHelpers.h"
 
 GLuint glHelp::MakePngTexture(const char *filename)
 {

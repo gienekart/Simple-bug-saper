@@ -1,6 +1,6 @@
-#include "GlEngine.h"
-#include "TextureMgr.h"
-#include "Texture.h"
+#include "Engine/GlEngine.h"
+#include "Engine/TextureMgr.h"
+#include "Engine/Texture.h"
 
 TextureMgr* TextureMgr::mgr = NULL;
 

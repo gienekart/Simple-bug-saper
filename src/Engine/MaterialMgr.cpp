@@ -1,7 +1,7 @@
-#include "MaterialMgr.h"
-#include "Material.h"
-#include "ShaderMgr.h"
-#include "TextureMgr.h"
+#include "Engine/MaterialMgr.h"
+#include "Engine/Material.h"
+#include "Engine/ShaderMgr.h"
+#include "Engine/TextureMgr.h"
 #include <fstream>
 
 std::string color0("color0");

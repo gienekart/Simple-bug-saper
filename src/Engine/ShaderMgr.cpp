@@ -1,8 +1,8 @@
 #include <fstream>
 #include <sstream>
 
-#include "Shader.h"
-#include "ShaderMgr.h"
+#include "Engine/Shader.h"
+#include "Engine/ShaderMgr.h"
 
 std::string fragment("fragment");
 std::string vertex("vertex");

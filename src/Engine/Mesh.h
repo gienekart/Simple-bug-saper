@@ -1,5 +1,5 @@
-#include "Resource.h"
-#include "Material.h"
+#include "Engine/Resource.h"
+#include "Engine/Material.h"
 #include <vector>
 #include <GL/gl.h>
 

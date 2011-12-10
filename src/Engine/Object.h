@@ -1,6 +1,6 @@
 #include <vector>
 #include <GL/gl.h>
-#include "Mesh.h"
+#include "Engine/Mesh.h"
 
 #ifndef OBJECT_H
 #define OBJECT_H

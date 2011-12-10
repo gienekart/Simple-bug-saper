@@ -1,4 +1,4 @@
-#include "Resource.h"
+#include "Engine/Resource.h"
 #include <GL/gl.h>
 
 #ifndef TEXTURE_H

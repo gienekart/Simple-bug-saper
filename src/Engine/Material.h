@@ -1,6 +1,6 @@
-#include "Resource.h"
-#include "Texture.h"
-#include "Shader.h"
+#include "Engine/Resource.h"
+#include "Engine/Texture.h"
+#include "Engine/Shader.h"
 #include <GL/gl.h>
 
 #ifndef MATERIAL_H

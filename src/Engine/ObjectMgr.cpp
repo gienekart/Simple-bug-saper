@@ -1,5 +1,5 @@
-#include "ObjectMgr.h"
-#include "Timer.h"
+#include "Engine/ObjectMgr.h"
+#include "Engine/Timer.h"
 
 using namespace std;
 
@@ -30,20 +30,6 @@ ObjectMgr::~ObjectMgr()
 void ObjectMgr::add(Object* objectToAdd)
 {
     this->loadedObjects.push_back(objectToAdd);
-}
-
-Leaf* ObjectMgr::addLeaf()
-{
-  Leaf* newObject = new Leaf();
-  this->add(newObject);
-  return newObject;
-}
-
-Button_1* ObjectMgr::addButton_1()
-{
-  Button_1* newObject = new Button_1();
-  this->add(newObject);
-  return newObject;
 }
 
 void ObjectMgr::remove(Object* objectToRemove)

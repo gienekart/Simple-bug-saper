@@ -1,4 +1,4 @@
-#include "Texture.h"
+#include "Engine/Texture.h"
 
 Texture::Texture(std::string name, GLuint textureNumber):Resource(name), 
     textureNumber(textureNumber)

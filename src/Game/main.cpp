@@ -1,13 +1,17 @@
-#include "GlEngine.h"
+#include "Engine/GlEngine.h"
+#include "Game/Leaf.h"
+#include "Game/button1.h"
 
 int main( int argc, char* args[] ) 
 {
     GlEngine engine;
     engine.init(argc, args);
     engine.setCamera(0, 0, 10, 0, 0, 0);
-    Leaf* l = ObjectMgr::getMgr()->addLeaf();
+    Leaf* l = new Leaf();
+    ObjectMgr::getMgr()->add(l);
     l->setPosition(-1, -2, -3);
-    ObjectMgr::getMgr()->addButton_1();
+    Button_1* b = new Button_1();
+    ObjectMgr::getMgr()->add(b);
     engine.run();
     return 0;
 }

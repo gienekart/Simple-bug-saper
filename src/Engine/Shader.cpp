@@ -1,5 +1,5 @@
-#include "GlEngine.h"
-#include "Shader.h"
+#include "Engine/GlEngine.h"
+#include "Engine/Shader.h"
 
 Shader::Shader(std::string name, Shader::shaderData* data):Resource(name)
 {

@@ -1,6 +1,4 @@
-#include "Object.h"
-#include "Leaf.h"
-#include "button1.h"
+#include "Engine/Object.h"
 #include <list>
 #include <string>
 
@@ -17,9 +15,6 @@ public:
 
     void add(Object* objectToAdd);
     void remove(Object* objectToRemove);
-    
-    Leaf* addLeaf();
-    Button_1* addButton_1();
 
     void update();
     void redraw();

@@ -1,5 +1,5 @@
-#include "GlEngine.h"
-#include "Material.h"
+#include "Engine/GlEngine.h"
+#include "Engine/Material.h"
 
 Material::Material(std::string name, Material::materialData* data) : Resource(name), data(*data)
 {

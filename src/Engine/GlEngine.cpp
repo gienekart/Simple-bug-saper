@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "GlEngine.h"
-#include "Timer.h"
+#include "Engine/GlEngine.h"
+#include "Engine/Timer.h"
 
 static void (*my_glGenProgramsARB)(GLuint, GLuint *) = NULL;
 static void (*my_glBindProgramARB)(GLuint, GLuint) = NULL;

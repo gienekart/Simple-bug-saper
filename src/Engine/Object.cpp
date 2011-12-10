@@ -1,5 +1,5 @@
-#include "GlEngine.h"
-#include "Object.h"
+#include "Engine/GlEngine.h"
+#include "Engine/Object.h"
 
 Object::Object() : mesh(NULL), material(NULL), scale(1)
 {

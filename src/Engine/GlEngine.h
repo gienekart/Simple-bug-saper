@@ -1,7 +1,7 @@
 
 #include <stdio.h>
-#include "GLHelpers.h"
-#include "ObjectMgr.h"
+#include "Engine/GLHelpers.h"
+#include "Engine/ObjectMgr.h"
 
 #ifndef GLENGINE_H
 #define GLENGINE_H

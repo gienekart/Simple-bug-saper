@@ -4,7 +4,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include "load_png.h"
+#include "Engine/load_png.h"
 
 class glHelp
 {
