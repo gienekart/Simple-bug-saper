@@ -49,6 +49,7 @@ set(HDRS_littleGLEngine
   ${engine_src_DIR}/TextureMgr.h
   ${engine_src_DIR}/Timer.h
   ${engine_src_DIR}/GLHelpers.h
+  ${engine_src_DIR}/InputHandler.h
 )
 set(SRCS_littleGLEngine
   ${engine_src_DIR}/Object.cpp
@@ -66,6 +67,7 @@ set(SRCS_littleGLEngine
   ${engine_src_DIR}/TextureMgr.cpp
   ${engine_src_DIR}/Timer.cpp
   ${engine_src_DIR}/GLHelpers.cpp
+  ${engine_src_DIR}/InputHandler.cpp
 )
 
 add_library(littleGLEngine ${HDRS_littleGLEngine} ${SRCS_littleGLEngine})

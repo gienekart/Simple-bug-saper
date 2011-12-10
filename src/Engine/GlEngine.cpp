@@ -4,6 +4,7 @@
 #include <string.h>
 #include "Engine/GlEngine.h"
 #include "Engine/Timer.h"
+#include "Engine/InputHandler.h"
 
 static void (*my_glGenProgramsARB)(GLuint, GLuint *) = NULL;
 static void (*my_glBindProgramARB)(GLuint, GLuint) = NULL;
@@ -14,6 +15,8 @@ static void (*my_glMultiTexCoord3fARB)(GLenum, GLfloat, GLfloat, GLfloat) = NULL
 
 GlEngine::GlEngine()
 {
+  //Initialize all critical singletons
+  InputHandler::getInputHandler();
 }
 
 GlEngine::~GlEngine()
@@ -40,6 +43,10 @@ void GlEngine::redraw()
 
     glFinish();
     glutSwapBuffers();
+    if(InputHandler::getInputHandler()->isPressedKey(27))  //if pressed ESC key
+    {
+      exit(0);
+    }
 }
 
 void GlEngine::iddle()
@@ -84,7 +91,10 @@ void GlEngine::init(int argc, char **argv)
     glutDisplayFunc(&(GlEngine::redraw));
     //glutTimerFunc(100, timerCB, 100);             // redraw only every given millisec
     //glutReshapeFunc(reshapeCB);
-    //glutKeyboardFunc(keyboardCB);
+    glutKeyboardFunc(&(InputHandler::keyPressed));
+    glutKeyboardUpFunc(&(InputHandler::keyUp));
+    glutSpecialFunc(&(InputHandler::keySpecialUp));
+    glutSpecialUpFunc(&(InputHandler::keySpecialPressed));
     //glutMouseFunc(mouseCB);
     //glutMotionFunc(mouseMotionCB);
     glutIdleFunc(&(GlEngine::iddle));
