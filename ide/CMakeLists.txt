@@ -2,11 +2,12 @@ cmake_minimum_required(VERSION 2.6)
 project(bugperProject)
 
 set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type (Debug|Release|Test)")
-set(engine_src_DIR ${bugperProject_SOURCE_DIR}/../src/Engine)
-set(game_src_DIR ${bugperProject_SOURCE_DIR}/../src/Game)
-set(include_DIR ${bugperProject_SOURCE_DIR}/../src)
-set(BIN_DIR ${bugperProject_SOURCE_DIR}/../bin)
-set(LIB_DIR ${bugperProject_SOURCE_DIR}/../lib)
+set(top_DIR ${bugperProject_SOURCE_DIR}/..)
+set(engine_src_DIR ${top_DIR}/src/Engine)
+set(game_src_DIR ${top_DIR}/src/Game)
+set(include_DIR ${top_DIR}/src)
+set(BIN_DIR ${top_DIR}/bin)
+set(LIB_DIR ${top_DIR}/lib)
 
 include_directories(/usr/X11R6/include/)
 link_directories(/usr/X11R6/lib)
@@ -21,12 +22,14 @@ set(HDRS_bugper
   ${game_src_DIR}/Leaf.h
   ${game_src_DIR}/button.h
   ${game_src_DIR}/button1.h
+  ${game_src_DIR}/ladybug.h
 )
 set(SRCS_bugper
   ${game_src_DIR}/main.cpp
   ${game_src_DIR}/Leaf.cpp
   ${game_src_DIR}/button.cpp
   ${game_src_DIR}/button1.cpp
+  ${game_src_DIR}/ladybug.cpp
 )
 
 set(HDRS_littleGLEngine
