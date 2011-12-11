@@ -71,6 +71,21 @@ void Game::frameCall(float deltaTime)
   
   //Display change
   this->displayAsWireframe(this->input->isPressedKey('x'));
+  
+  //For testing game mecanic
+  if(this->input->isPressedKey('1'))
+  {
+    this->logic->ClickLadyBug(0,4);
+  }
+  if(this->input->isPressedKey('2'))
+  {
+    this->logic->ClickLadyBug(0,0);
+  }
+  if(this->input->isPressedKey('3'))
+  {
+    this->logic->ClickLadyBug(1,1);
+  }
+  
 }
 
 void Game::changeCameraHorisontal()

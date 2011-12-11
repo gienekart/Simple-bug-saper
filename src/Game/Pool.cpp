@@ -23,7 +23,8 @@ inline int Pool::findRow(int pos)
   return pos / this->size;
 }
 
-Pool::Pool(int size):size(size), poolInfo(size*size, 0)
+Pool::Pool(int size, GameLogic* parent):size(size), poolInfo(size*size, 0), 
+    parent(parent)
 {
   this->leaf = new Leaf();
   this->leaf->setPosition(0.f, -0.05f, 0.f);
@@ -40,14 +41,21 @@ void Pool::fillWithBugs()
   for(int col = 0; col < this->size; col++)
     for(int row = 0; row < this->size; row++)
     {
-      LadyBug* bug = new LadyBug();
+      LadyBug* bug = new LadyBug(this->parent, col, row);
       this->putObject(col, row, bug);
     }
 }
 
 LadyBug* Pool::getLadyBug(int col, int row)
 {
-  return this->bugs[coord(col, row)];
+  if((0 <= col) && (col < this->size) && (0 <= row) && (row < this->size))
+  {
+    return this->bugs[coord(col, row)];
+  }
+  else
+  {
+    return NULL;
+  }
 }
 
 Button* Pool::getObject(int col, int row)

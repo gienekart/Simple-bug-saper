@@ -11,10 +11,12 @@ struct bugCoordinates
   short row;
 };
 
+class GameLogic;
+
 class Pool
 {
 public:
-  Pool(int size);
+  Pool(int size, GameLogic* parent);
   ~Pool();
   
   void fillWithBugs();
@@ -33,6 +35,7 @@ private:
   int coord(int col, int row);
   int findCol(int pos);
   int findRow(int pos);
+  GameLogic* parent;
   
   
   int size;
