@@ -36,7 +36,7 @@ void GameLogic::BuildPool(int size, int mines)
   }
   
   // Putting number objects
-  this->pool->recalcInfoButtons();
+  this->pool->updateInfoButtons();
   
   //filling with bugs
   this->pool->fillWithBugs();

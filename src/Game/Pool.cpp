@@ -6,13 +6,24 @@
 #include "Mine.h"
 
 const float Pool::BugSize = 1;
+const int Pool::MineCode = -1;
 
-inline int coord(int col, int row, int size)
+int neightbours[][2] = {{-1,-1}, {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}};
+
+inline int Pool::coord(int col, int row)
 {
-  return row * size + col;
+  return row * this->size + col;
+}
+inline int Pool::findCol(int pos)
+{
+  return pos % this->size;
+}
+inline int Pool::findRow(int pos)
+{
+  return pos / this->size;
 }
 
-Pool::Pool(int size):size(size)
+Pool::Pool(int size):size(size), poolInfo(size*size, 0)
 {
   this->leaf = new Leaf();
   this->leaf->setPosition(0.f, -0.05f, 0.f);
@@ -36,40 +47,52 @@ void Pool::fillWithBugs()
 
 LadyBug* Pool::getLadyBug(int col, int row)
 {
-  return this->bugs[coord(col, row, this->size)];
+  return this->bugs[coord(col, row)];
 }
 
 Button* Pool::getObject(int col, int row)
 {
-  return this->objects[coord(col, row, this->size)];
+  return this->objects[coord(col, row)];
 }
 
 void Pool::putInfoButton(int col, int row, int howManyMines)
 {
-  
+  Button* infoButton = new Button_1();
+  this->putObject(col, row, infoButton);
 }
 
 void Pool::putMine(int col, int row)
 {
   Mine* mine = new Mine();
   this->putObject(col, row, mine);
+  this->poolInfo[coord(col, row)] = -1;
 }
 
 void Pool::putObject(int col, int row, Button* object)
 {
-  this->objects[coord(col, row, this->size)] = object;
+  this->objects[coord(col, row)] = object;
   this->recalcCoords(col, row, -0.1, object);
 }
 
 void Pool::putObject(int col, int row, LadyBug* object)
 {
-  this->bugs[coord(col, row, this->size)] = object;
+  this->bugs[coord(col, row)] = object;
   this->recalcCoords(col, row, 0.f, object);
 }
 
-void Pool::recalcInfoButtons()
+void Pool::updateInfoButtons()
 {
+  this->recalcPoolInfo();
   
+  for(int pos=0; pos < this->poolInfo.size(); pos++)
+  {
+    if(this->poolInfo[pos] > 0) //if has some trubelsome neightbours
+    {
+      int col = findCol(pos);
+      int row = findRow(pos);
+      this->putInfoButton(col, row, this->poolInfo[pos]);
+    }
+  }
 }
 
 void Pool::recalcCoords(int col, int row, float height, Object* object)
@@ -82,4 +105,36 @@ void Pool::recalcCoords(int col, int row, float height, Object* object)
   float rowPos = -halfdist + row * resolution;
   
   object->setPosition(colPos, height, row);
+}
+
+void Pool::recalcPoolInfo()
+{
+  for(int pos = 0; pos <size*size; pos++)
+  {
+    if(this->poolInfo[pos] == Pool::MineCode)
+    {
+      int col = findCol(pos);
+      int row = findRow(pos);
+      this->increaseNeightbourRisk(col, row);
+    }
+  }
+}
+
+void Pool::increaseNeightbourRisk(int col, int row)
+{
+  for(int i = 0; i < 8; i++)
+  {
+    int newCol = col + neightbours[i][0];
+    int newRow = row + neightbours[i][1];
+    
+    // if neightbour is in pool
+    if((0 <= newCol) && (newCol < this->size) &&
+        (0 <= newRow) && (newRow < this->size))
+    {
+      if(this->poolInfo[coord(newCol, newRow)] != Pool::MineCode)
+      {
+        this->poolInfo[coord(newCol, newRow)]++;
+      }
+    }
+  }
 }
