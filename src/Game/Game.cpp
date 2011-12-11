@@ -5,6 +5,7 @@
 #include "button.h"
 
 const float Game::VerticalSpeed = 3.5;
+const float Game::BasicPointSpeed = 0.04;
 const float Game::MaxHeight = 20;
 const float Game::MinHeight = 3;
 const float Game::MinRadius = 0.6;
@@ -19,6 +20,8 @@ Game::Game():input(InputHandler::getInputHandler())
   this->cameraLookingFrom.x = 0;
   this->cameraLookingFrom.y = 10;
   this->cameraLookingFrom.z = 10;
+  
+  this->lookingAngle = 0;
   
   this->updateCameraSets();
 }
@@ -41,6 +44,22 @@ void Game::frameCall(float deltaTime)
   if(this->input->isPressedKey('z'))
   {
     this->changeCameraVertical(deltaTime, false);
+  }
+  if(this->input->isPressedKey('w'))
+  {
+    this->changeBasicPoint(deltaTime, 1, 0);
+  }
+  if(this->input->isPressedKey('s'))
+  {
+    this->changeBasicPoint(deltaTime, -1, 0);
+  }
+  if(this->input->isPressedKey('a'))
+  {
+    this->changeBasicPoint(deltaTime, 0, 1);
+  }
+  if(this->input->isPressedKey('d'))
+  {
+    this->changeBasicPoint(deltaTime, 0, -1);
   }
 }
 
@@ -77,6 +96,7 @@ void Game::changeCameraHorisontal()
   this->cameraLookingFrom.z = radius * cos(angle);
   
   this->updateCameraSets();
+  this->lookingAngle = angle;
 }
 
 void Game::updateCameraSets()
@@ -109,6 +129,35 @@ void Game::changeCameraVertical(float deltaTime, bool goingUp)
     {
       this->cameraLookingFrom.y = Game::MinHeight;
     }
+  }
+  
+  this->updateCameraSets();
+}
+
+void Game::changeBasicPoint(float deltatime, char stright, char side)
+{
+  //Data preparation
+  float strightDir = stright * cos(this->lookingAngle) - side * sin(this->lookingAngle);
+  float sideDir = stright * sin(this->lookingAngle) + side * cos(this->lookingAngle);
+  this->cameraLookingAt.x += -sideDir * Game::BasicPointSpeed;
+  this->cameraLookingAt.z += -strightDir * Game::BasicPointSpeed;
+  
+  if (this->cameraLookingAt.x < - Game::MaxRadius)
+  {
+    this->cameraLookingAt.x = - Game::MaxRadius;
+  }
+  if (this->cameraLookingAt.x > Game::MaxRadius)
+  {
+    this->cameraLookingAt.x = Game::MaxRadius;
+  }
+  
+  if (this->cameraLookingAt.z < - Game::MaxRadius)
+  {
+    this->cameraLookingAt.z = - Game::MaxRadius;
+  }
+  if (this->cameraLookingAt.z > Game::MaxRadius)
+  {
+    this->cameraLookingAt.z = Game::MaxRadius;
   }
   
   this->updateCameraSets();

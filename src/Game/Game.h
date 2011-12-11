@@ -18,11 +18,14 @@ private:
     float y;
     float z;
   } cameraLookingFrom, cameraLookingAt;
+  float lookingAngle;
   void changeCameraHorisontal();
   void changeCameraVertical(float deltaTime, bool goingUp);
+  void changeBasicPoint(float deltatime, char stright, char side);
   void updateCameraSets();
   InputHandler* input;
   static const float VerticalSpeed;
+  static const float BasicPointSpeed;
   static const float MinHeight;
   static const float MaxHeight;
   static const float MinRadius;
