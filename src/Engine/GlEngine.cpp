@@ -84,19 +84,25 @@ void GlEngine::setCamera(float posX, float posY, float posZ, float targetX, floa
 
 void GlEngine::initLights()
 {
-    // set up light colors (ambient, diffuse, specular)
-    GLfloat lightKa[] = {.2f, .2f, .2f, 1.0f};  // ambient light
+    //Light0 is an general ambient for all scene
+    //Light1 is a point light which will give us directional light
+  
+    // set up general ambient light 
+    GLfloat lightKa[] = {.5f, .5f, .5f, 1.0f};  // ambient light
+    glLightfv(GL_LIGHT0, GL_AMBIENT, lightKa);
+    
+    // set up point light colors (diffuse, specular)
     GLfloat lightKd[] = {.7f, .7f, .7f, 1.0f};  // diffuse light
     GLfloat lightKs[] = {1, 1, 1, 1};           // specular light
-    glLightfv(GL_LIGHT0, GL_AMBIENT, lightKa);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightKd);
-    glLightfv(GL_LIGHT0, GL_SPECULAR, lightKs);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, lightKd);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, lightKs);
 
     // position the light
-    float lightPos[4] = {0, 0, 20, 1}; // positional light
-    glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+    float lightPos[4] = {0, 15, 0, 1}; // positional light
+    glLightfv(GL_LIGHT1, GL_POSITION, lightPos);
 
-    glEnable(GL_LIGHT0);                        // MUST enable each light source after configuration
+    glEnable(GL_LIGHT0); 
+    glEnable(GL_LIGHT1);                       // MUST enable each light source after configuration
 }
 
 void GlEngine::init(int argc, char **argv)
@@ -130,6 +136,7 @@ void GlEngine::init(int argc, char **argv)
     glEnable(GL_CULL_FACE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glShadeModel(GL_SMOOTH);
 
      // track material ambient and diffuse from surface color, call it before glEnable(GL_COLOR_MATERIAL)
     //glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
@@ -147,7 +154,23 @@ void GlEngine::init(int argc, char **argv)
     gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);        // Calculate The Aspect Ratio Of The Window
     glMatrixMode(GL_MODELVIEW);
 
-    //this->initLights();
+    this->initLights();
+    this->initBasicMaterial();
     
     //initialize other components
+}
+
+void GlEngine::initBasicMaterial()
+{
+     GLfloat material_Ka[] = {1.f, 1.f, 1.f, 1.0f};
+     GLfloat material_Kd[] = {1.f, 1.f, 1.f, 1.0f};
+     GLfloat material_Ks[] = {1.f, 1.f, 1.f, 1.0f};
+     GLfloat material_Ke[] = {1.f, 1.f, 1.f, 1.0f};
+     GLfloat material_Se = 20.0f;
+
+     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, material_Ka);
+     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, material_Kd);
+     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, material_Ks);
+     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, material_Ke);
+     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, material_Se);
 }

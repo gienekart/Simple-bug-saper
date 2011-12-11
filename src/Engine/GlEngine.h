@@ -36,6 +36,7 @@ private:
     void initLights();
     static void iddle();
     static char * load_program_string(const char *filename);
+    void initBasicMaterial();
 
     ExternLogic* logicToCall;
     int windowHandle;
