@@ -106,7 +106,7 @@ void Pool::putMine(int col, int row)
 void Pool::putObject(int col, int row, Button* object)
 {
   this->objects[coord(col, row)] = object;
-  this->recalcCoords(col, row, -0.1, object);
+  this->recalcCoords(col, row, 0, object);
 }
 
 void Pool::putObject(int col, int row, LadyBug* object)
