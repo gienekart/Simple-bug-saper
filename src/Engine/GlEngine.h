@@ -40,7 +40,7 @@ private:
 
     ExternLogic* logicToCall;
     int windowHandle;
-    static const int height = 300;
-    static const int width = 400;
+    static const int height = 600;
+    static const int width = 800;
 };
 #endif

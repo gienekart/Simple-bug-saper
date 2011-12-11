@@ -57,7 +57,34 @@ Button* Pool::getObject(int col, int row)
 
 void Pool::putInfoButton(int col, int row, int howManyMines)
 {
-  Button* infoButton = new Button_1();
+  Button* infoButton;
+  switch(howManyMines)
+  {
+    case 1:
+      infoButton = new InfoButton("1");
+      break;
+    case 2:
+      infoButton = new InfoButton("2");
+      break;
+    case 3:
+      infoButton = new InfoButton("3");
+      break;
+    case 4:
+      infoButton = new InfoButton("4");
+      break;
+    case 5:
+      infoButton = new InfoButton("5");
+      break;
+    case 6:
+      infoButton = new InfoButton("6");
+      break;
+    case 7:
+      infoButton = new InfoButton("7");
+      break;
+    case 8:
+      infoButton = new InfoButton("8");
+      break;
+  }
   this->putObject(col, row, infoButton);
 }
 

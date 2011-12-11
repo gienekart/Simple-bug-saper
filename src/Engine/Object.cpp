@@ -1,7 +1,7 @@
 #include "Engine/GlEngine.h"
 #include "Engine/Object.h"
 
-Object::Object() : mesh(NULL), material(NULL), scale(1)
+Object::Object() : mesh(NULL), material(NULL), scale(1), angle(0)
 {
   this->pos.x = 0;
   this->pos.y = 0;

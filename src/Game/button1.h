@@ -4,15 +4,11 @@
 #ifndef BUTTON1_H
 #define BUTTON1_H
 
-class Button_1: public Button
+class InfoButton: public Button
 {
 public:
-  Button_1();
-  virtual ~Button_1();
-  
-  virtual void Update(float deltatime);
-private:
-  float time;  
+  InfoButton(const char* howMany);
+  virtual ~InfoButton();
 };
 
 #endif
