@@ -23,6 +23,7 @@ private:
   void changeCameraVertical(float deltaTime, bool goingUp);
   void changeBasicPoint(float deltatime, char stright, char side);
   void updateCameraSets();
+  void displayAsWireframe(bool active);
   InputHandler* input;
   static const float VerticalSpeed;
   static const float BasicPointSpeed;

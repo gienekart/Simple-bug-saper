@@ -37,6 +37,8 @@ void Game::frameCall(float deltaTime)
   {
     this->changeCameraHorisontal();
   }
+  
+  // Camera height
   if(this->input->isPressedKey('q') == true)
   {
     this->changeCameraVertical(deltaTime, true);
@@ -45,6 +47,8 @@ void Game::frameCall(float deltaTime)
   {
     this->changeCameraVertical(deltaTime, false);
   }
+  
+  // Base point move
   if(this->input->isPressedKey('w'))
   {
     this->changeBasicPoint(deltaTime, 1, 0);
@@ -61,6 +65,9 @@ void Game::frameCall(float deltaTime)
   {
     this->changeBasicPoint(deltaTime, 0, -1);
   }
+  
+  //Display change
+  this->displayAsWireframe(this->input->isPressedKey('x'));
 }
 
 void Game::changeCameraHorisontal()
@@ -161,4 +168,17 @@ void Game::changeBasicPoint(float deltatime, char stright, char side)
   }
   
   this->updateCameraSets();
+}
+
+void Game::displayAsWireframe(bool active)
+{
+  GlEngine* engine = GlEngine::getEngine();
+  if (active == true)
+  {
+    engine->setShowMode(GL_LINE);
+  }
+  else
+  {
+    engine->setShowMode(GL_FILL);
+  }
 }

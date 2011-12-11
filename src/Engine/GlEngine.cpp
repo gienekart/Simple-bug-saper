@@ -45,6 +45,11 @@ void GlEngine::setExternLogic(ExternLogic* logicToCall)
   this->logicToCall = logicToCall;
 }
 
+void GlEngine::setShowMode(GLuint glModeCode)
+{
+  glPolygonMode(GL_FRONT_AND_BACK, glModeCode);
+}
+
 void GlEngine::redraw()
 {
     float daltaTime = ObjectMgr::getMgr()->update();
