@@ -25,6 +25,9 @@ public:
   void setScale(float scale);
   float getScale();
   
+  void unselect();
+  void select();
+  
   virtual void Update(float detlatime);
   virtual void Render();
 protected:
@@ -32,6 +35,7 @@ protected:
   Material* material;
   float scale;
   float angle;
+  float selection;
 
   Object::position pos;
 private:

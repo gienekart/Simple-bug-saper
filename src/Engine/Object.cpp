@@ -1,7 +1,7 @@
 #include "Engine/GlEngine.h"
 #include "Engine/Object.h"
 
-Object::Object() : mesh(NULL), material(NULL), scale(1), angle(0)
+Object::Object() : mesh(NULL), material(NULL), scale(1), angle(0), selection(0)
 {
   this->pos.x = 0;
   this->pos.y = 0;
@@ -9,7 +9,8 @@ Object::Object() : mesh(NULL), material(NULL), scale(1), angle(0)
   registerObject();
 }
 
-Object::Object(float x, float y, float z) : mesh(NULL), material(NULL), scale(1), angle(0)
+Object::Object(float x, float y, float z) : mesh(NULL), material(NULL), scale(1), 
+    angle(0), selection(0)
 {
   this->pos.x = x;
   this->pos.y = y;
@@ -17,7 +18,8 @@ Object::Object(float x, float y, float z) : mesh(NULL), material(NULL), scale(1)
   registerObject();
 }
 
-Object::Object(Object::position pos) : mesh(NULL), material(NULL), pos(pos), scale(1), angle(0)
+Object::Object(Object::position pos) : mesh(NULL), material(NULL), pos(pos), scale(1), 
+    angle(0), selection(0)
 {
   registerObject();
 }
@@ -76,4 +78,14 @@ void Object::Render()
 void Object::registerObject()
 {
   ObjectMgr::getMgr()->add(this);
+}
+
+void Object::unselect()
+{
+  this->selection = 0.0;
+}
+
+void Object::select()
+{
+  this->selection = 1.0;
 }

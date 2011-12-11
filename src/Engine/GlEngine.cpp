@@ -6,6 +6,8 @@
 #include "Engine/Timer.h"
 #include "Engine/InputHandler.h"
 
+#define SELECT_BUFF_SIZE 4096 //should be more than enough
+
 static void (*my_glGenProgramsARB)(GLuint, GLuint *) = NULL;
 static void (*my_glBindProgramARB)(GLuint, GLuint) = NULL;
 static void (*my_glProgramStringARB)(GLuint, GLuint, GLint, const GLbyte *) = NULL;
@@ -14,6 +16,8 @@ static void (*my_glActiveTextureARB)(GLenum) = NULL;
 static void (*my_glMultiTexCoord3fARB)(GLenum, GLfloat, GLfloat, GLfloat) = NULL;
 
 GlEngine* GlEngine::engine = NULL;
+GLuint selectBuf[SELECT_BUFF_SIZE]; 
+
 GlEngine* GlEngine::getEngine()
 {
   if (GlEngine::engine == NULL)
@@ -54,20 +58,64 @@ void GlEngine::redraw()
 {
     float daltaTime = ObjectMgr::getMgr()->update();
     GlEngine::engine->logicToCall->frameCall(daltaTime);
+    
+    SelectingScene();
+    RenderingScene();
+    
+    if(InputHandler::getInputHandler()->isPressedKey(InputHandler::ESC)) //if pressed ESC key 
+    {
+      exit(0);
+    }
+}
+
+void GlEngine::RenderingScene()
+{
     // clear buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
     glPushMatrix();
-    ObjectMgr::getMgr()->redraw();
+    ObjectMgr::getMgr()->redraw(false);
 
     glPopMatrix();
 
     glFinish();
     glutSwapBuffers();
-    if(InputHandler::getInputHandler()->isPressedKey(InputHandler::ESC)) //if pressed ESC key 
-    {
-      exit(0);
-    }
+}
+
+void GlEngine::SelectingScene()
+{
+    Mouse2D position = InputHandler::getInputHandler()->getLastMousePosition();
+    GLint viewport[4]; 
+    glGetIntegerv(GL_VIEWPORT, viewport);
+    glSelectBuffer (SELECT_BUFF_SIZE, selectBuf);
+    glRenderMode (GL_SELECT);
+    
+    //Preppering to selection
+    glPushMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();                                // Reset The Projection Matrix
+    gluPickMatrix(position.x, viewport[3] - position.y, 30, 30, viewport);
+    gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);
+    glMatrixMode(GL_MODELVIEW);
+    
+    glInitNames();
+    glPushName(0);
+    
+    //"Rendering" goes here
+    ObjectMgr::getMgr()->redraw(true);
+       
+    glPopMatrix();
+    glFinish();
+     
+     
+    int hits = glRenderMode(GL_RENDER);
+    int a = hits;
+    
+    // Returning default settigns
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();                                // Reset The Projection Matrix
+    gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);        // Calculate The Aspect Ratio Of The Window
+    glMatrixMode(GL_MODELVIEW);
 }
 
 void GlEngine::iddle()

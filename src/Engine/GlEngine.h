@@ -37,6 +37,8 @@ private:
     static void iddle();
     static char * load_program_string(const char *filename);
     void initBasicMaterial();
+    static void RenderingScene();
+    static void SelectingScene();
 
     ExternLogic* logicToCall;
     int windowHandle;

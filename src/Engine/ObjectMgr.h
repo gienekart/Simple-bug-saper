@@ -17,7 +17,7 @@ public:
     void remove(Object* objectToRemove);
 
     float update();
-    void redraw();
+    void redraw(bool isHitMode);
 private:
     std::list<Object*> loadedObjects;
     static ObjectMgr* mgr;

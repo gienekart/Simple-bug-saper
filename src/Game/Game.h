@@ -19,7 +19,7 @@ private:
     float y;
     float z;
   } cameraLookingFrom, cameraLookingAt;
-  void changeCameraHorisontal();
+  void changeCameraHorisontal(float deltaTime);
   void changeCameraVertical(float deltaTime, bool goingUp);
   void changeBasicPoint(float deltatime, char stright, char side);
   void updateCameraSets();

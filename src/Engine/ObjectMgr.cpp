@@ -55,8 +55,9 @@ float ObjectMgr::update()
     return deltaTime;
 }
 
-void ObjectMgr::redraw()
+void ObjectMgr::redraw(bool isHitMode)
 {
+    int index = 1;
     list<Object*>::iterator current;
     current = this->loadedObjects.begin();
 
@@ -65,6 +66,11 @@ void ObjectMgr::redraw()
 
     for(;current != end; current++)
     {
+      if(isHitMode == true)
+      {
+        glLoadName(index);
+        index++;
+      }
         (*current)->Render();
     }
 }

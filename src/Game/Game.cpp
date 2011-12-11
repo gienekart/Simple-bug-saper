@@ -5,7 +5,7 @@
 #include "button.h"
 
 const float Game::VerticalSpeed = 3.5;
-const float Game::BasicPointSpeed = 0.04;
+const float Game::BasicPointSpeed = 4;
 const float Game::MaxHeight = 20;
 const float Game::MinHeight = 3;
 const float Game::MinRadius = 0.6;
@@ -38,7 +38,7 @@ void Game::frameCall(float deltaTime)
 {
   if(this->input->isMouseClicked(InputHandler::MouseRightButton))
   {
-    this->changeCameraHorisontal();
+    this->changeCameraHorisontal(deltaTime);
   }
   
   // Camera height
@@ -88,7 +88,7 @@ void Game::frameCall(float deltaTime)
   
 }
 
-void Game::changeCameraHorisontal()
+void Game::changeCameraHorisontal(float deltaTime)
 {
   Mouse2D move = this->input->getLastMouseMotion();
   
@@ -105,8 +105,8 @@ void Game::changeCameraHorisontal()
   }
   
   //section for move
-  angle += float(move.x) / 2000;
-  radius *= float(move.y) / 1000 + 1;
+  angle += float(move.x) / 20 *deltaTime;
+  radius *= float(move.y) / 10 *deltaTime + 1;
   
   if (radius < Game::MinRadius)
   {
@@ -164,8 +164,8 @@ void Game::changeBasicPoint(float deltatime, char stright, char side)
   //Data preparation
   float strightDir = stright * cos(this->lookingAngle) - side * sin(this->lookingAngle);
   float sideDir = stright * sin(this->lookingAngle) + side * cos(this->lookingAngle);
-  this->cameraLookingAt.x += -sideDir * Game::BasicPointSpeed;
-  this->cameraLookingAt.z += -strightDir * Game::BasicPointSpeed;
+  this->cameraLookingAt.x += -sideDir * Game::BasicPointSpeed * deltatime;
+  this->cameraLookingAt.z += -strightDir * Game::BasicPointSpeed * deltatime;
   
   if (this->cameraLookingAt.x < - Game::MaxRadius)
   {
