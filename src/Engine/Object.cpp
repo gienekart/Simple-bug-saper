@@ -66,6 +66,8 @@ void Object::Render()
   glUniform1fARB(scaleLocation, this->scale);
   GLint angleLocation = glGetUniformLocationARB(shader, "objectAngle");
   glUniform1fARB(angleLocation, this->angle);
+  GLint selectionLocation = glGetUniformLocationARB(shader, "objectSelection");
+  glUniform1fARB(selectionLocation, this->selection);
 
   //render geometry with current material sets
   this->mesh->Render();

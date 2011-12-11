@@ -118,6 +118,24 @@ void GlEngine::SelectingScene()
     glMatrixMode(GL_MODELVIEW);
 }
 
+void GlEngine::CaclulateSelection(int hits)
+{
+  if (hits <= 0)
+    return;
+
+  int n = 1;
+  double minz = selectBuf[1];
+  for (int i = 1; i < hits; i++)
+  {
+    if (selectBuf[1 + i * 4] < minz)
+    {
+      n = i;
+      minz = selectBuf[1 + i * 4];
+    }
+  }
+  ObjectMgr::getMgr()->selectObiectNumber(n);
+}
+
 void GlEngine::iddle()
 {
     redraw();

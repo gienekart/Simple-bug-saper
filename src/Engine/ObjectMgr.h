@@ -18,6 +18,8 @@ public:
 
     float update();
     void redraw(bool isHitMode);
+    
+    void selectObiectNumber(int number);
 private:
     std::list<Object*> loadedObjects;
     static ObjectMgr* mgr;

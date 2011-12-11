@@ -50,6 +50,7 @@ float ObjectMgr::update()
 
     for(;current != end; current++)
     {
+        (*current)->unselect();
         (*current)->Update(deltaTime);
     } 
     return deltaTime;
@@ -71,6 +72,22 @@ void ObjectMgr::redraw(bool isHitMode)
         glLoadName(index);
         index++;
       }
-        (*current)->Render();
+      (*current)->Render();
     }
+}
+
+void ObjectMgr::selectObiectNumber(int number)
+{
+  std::list<Object*>::iterator current = this->loadedObjects.begin();
+  std::list<Object*>::iterator end = this->loadedObjects.end();
+  int counter = 0;
+  for(current; current != end; current++)
+  {
+    counter++;
+    if(counter == number)
+    {
+      (*current)->select();
+      return;
+    }
+  }
 }

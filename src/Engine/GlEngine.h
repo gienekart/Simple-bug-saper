@@ -39,6 +39,7 @@ private:
     void initBasicMaterial();
     static void RenderingScene();
     static void SelectingScene();
+    static void CaclulateSelection(int hits);
 
     ExternLogic* logicToCall;
     int windowHandle;
