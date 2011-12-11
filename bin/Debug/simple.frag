@@ -4,7 +4,7 @@ varying vec3 position;
 varying vec3 normal;
 void main(void){
    //Light direction  
-   vec3 lightDirection = normalize(gl_LightSource[0].position.xyz - position); 
+   vec3 lightDirection = normalize(gl_LightSource[1].position.xyz - position); 
 
    //calculate ambient strenght:  
    vec4 ambient = gl_FrontLightProduct[0].ambient; 

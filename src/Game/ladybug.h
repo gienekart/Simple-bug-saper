@@ -31,6 +31,7 @@ private:
   bool isFlying;
   int col;
   int row;
+  float angleVelocity;
   
   static const float colorAnimationLenght;
   static const float flyAnimationLenght;

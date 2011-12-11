@@ -88,17 +88,17 @@ void GlEngine::initLights()
     //Light1 is a point light which will give us directional light
   
     // set up general ambient light 
-    GLfloat lightKa[] = {.5f, .5f, .5f, 1.0f};  // ambient light
+    GLfloat lightKa[] = {.3f, .3f, .3f, 1.0f};  // ambient light
     glLightfv(GL_LIGHT0, GL_AMBIENT, lightKa);
     
     // set up point light colors (diffuse, specular)
-    GLfloat lightKd[] = {.7f, .7f, .7f, 1.0f};  // diffuse light
+    GLfloat lightKd[] = {.65f, .65f, .65f, 1.0f};  // diffuse light
     GLfloat lightKs[] = {1, 1, 1, 1};           // specular light
     glLightfv(GL_LIGHT1, GL_DIFFUSE, lightKd);
     glLightfv(GL_LIGHT1, GL_SPECULAR, lightKs);
 
     // position the light
-    float lightPos[4] = {0, 15, 0, 1}; // positional light
+    float lightPos[4] = {10, 3, 0, 1}; // positional light
     glLightfv(GL_LIGHT1, GL_POSITION, lightPos);
 
     glEnable(GL_LIGHT0); 

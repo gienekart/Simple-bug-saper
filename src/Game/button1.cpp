@@ -4,6 +4,8 @@
 #include "Game/button1.h"
 #include "Engine/MaterialMgr.h"
 
+const float InfoButton::changeSpeed = 0.7;
+
 InfoButton::InfoButton(const char* howMany)
 {
   std::string ending = howMany;
@@ -15,4 +17,9 @@ InfoButton::InfoButton(const char* howMany)
 InfoButton::~InfoButton()
 {
   
+}
+
+void InfoButton::Update(float detlatime)
+{
+  this->angle += detlatime * changeSpeed;
 }

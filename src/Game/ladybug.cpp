@@ -15,6 +15,7 @@ LadyBug::LadyBug(GameLogic* logicToInform, int col, int row):logicToInform(logic
   this->mesh = (Mesh*)MeshMgr::getMgr()->getResource("ladybug");
   this->material = (Material*)MaterialMgr::getMgr()->getResource("ladybug");
   this->setScale(0.4);
+  this->angleVelocity = (this->logicToInform->getRandom() - 0.5) * 2;
 }
 
 LadyBug::~LadyBug()
@@ -42,6 +43,8 @@ void LadyBug::Click()
 
 void LadyBug::Update(float deltaTime)
 {
+  this->angle += this->angleVelocity * deltaTime;
+  
   if(this->state == notClicked)
   {
     return;

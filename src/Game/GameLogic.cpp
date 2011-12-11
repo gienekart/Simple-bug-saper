@@ -1,3 +1,5 @@
+#include <time.h>
+#include <stdlib.h>
 #include "Game/GameLogic.h"
 #include "Game/Mine.h"
 #include "Game/Pool.h"
@@ -10,7 +12,7 @@ int myneightbours[][2] = {{-1,-1}, {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, 
 
 GameLogic::GameLogic():pool(NULL)
 {
-  
+  srand((unsigned)time( NULL ));
 }
 
 GameLogic::~GameLogic()
@@ -66,4 +68,11 @@ void GameLogic::StartedBug(int col, int row)
       }
     }
   }
+}
+
+float GameLogic::getRandom()
+{
+  int randed = rand() % 32767;
+  float floatRand = (float)randed;
+  return floatRand/32767.0f;
 }
