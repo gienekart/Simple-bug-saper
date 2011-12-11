@@ -6,9 +6,15 @@ LadyBug::LadyBug()
 {
   this->mesh = (Mesh*)MeshMgr::getMgr()->getResource("ladybug");
   this->material = (Material*)MaterialMgr::getMgr()->getResource("ladybug");
+  this->scale = 0.3;
 }
 
 LadyBug::~LadyBug()
+{
+  
+}
+
+void LadyBug::Click()
 {
   
 }

@@ -24,6 +24,9 @@ Game::Game():input(InputHandler::getInputHandler())
   this->lookingAngle = 0;
   
   this->updateCameraSets();
+  
+  this->logic = new GameLogic();
+  this->logic->BuildPool(5, 3);
 }
 
 Game::~Game()

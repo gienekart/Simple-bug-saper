@@ -7,4 +7,6 @@ class LadyBug : public Object
 public:
   LadyBug();
   ~LadyBug();
+  
+  void Click();
 };

@@ -34,6 +34,8 @@ protected:
   float angle;
 
   Object::position pos;
+private:
+  void registerObject();
 };
 
 #endif

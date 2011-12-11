@@ -2,6 +2,7 @@
 
 #include "Engine/ExternLogic.h"
 #include "Engine/InputHandler.h"
+#include "Game/GameLogic.h"
 
 class Game : public ExternLogic
 {
@@ -18,13 +19,16 @@ private:
     float y;
     float z;
   } cameraLookingFrom, cameraLookingAt;
-  float lookingAngle;
   void changeCameraHorisontal();
   void changeCameraVertical(float deltaTime, bool goingUp);
   void changeBasicPoint(float deltatime, char stright, char side);
   void updateCameraSets();
   void displayAsWireframe(bool active);
+  
+  float lookingAngle;
   InputHandler* input;
+  GameLogic* logic;
+  
   static const float VerticalSpeed;
   static const float BasicPointSpeed;
   static const float MinHeight;

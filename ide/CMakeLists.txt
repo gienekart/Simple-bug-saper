@@ -24,6 +24,9 @@ set(HDRS_bugper
   ${game_src_DIR}/button1.h
   ${game_src_DIR}/ladybug.h
   ${game_src_DIR}/Game.h
+  ${game_src_DIR}/GameLogic.h
+  ${game_src_DIR}/Pool.h
+  ${game_src_DIR}/Mine.h
 )
 set(SRCS_bugper
   ${game_src_DIR}/main.cpp
@@ -32,6 +35,9 @@ set(SRCS_bugper
   ${game_src_DIR}/button1.cpp
   ${game_src_DIR}/ladybug.cpp
   ${game_src_DIR}/Game.cpp
+  ${game_src_DIR}/GameLogic.cpp
+  ${game_src_DIR}/Pool.cpp
+  ${game_src_DIR}/Mine.cpp
 )
 
 set(HDRS_littleGLEngine
