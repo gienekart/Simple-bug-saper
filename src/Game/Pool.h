@@ -24,6 +24,9 @@ public:
   void updateInfoButtons();
   LadyBug* getLadyBug(int col, int row);
   Button* getObject(int col, int row);
+  int getCellValue(int col, int row);
+  
+  static const int MineCode;
   
 private:
   void putInfoButton(int col, int row, int howManyMines);
@@ -46,5 +49,4 @@ private:
   Leaf* leaf;
   
   static const float BugSize;
-  static const int MineCode;
 };

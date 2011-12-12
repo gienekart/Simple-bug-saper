@@ -173,3 +173,8 @@ void Pool::increaseNeightbourRisk(int col, int row)
     }
   }
 }
+
+int Pool::getCellValue(int col, int row)
+{
+  return this->poolInfo[coord(col, row)];
+}

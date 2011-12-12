@@ -1,5 +1,6 @@
 #include <time.h>
 #include <stdlib.h>
+#include <iostream>
 #include "Game/GameLogic.h"
 #include "Game/Mine.h"
 #include "Game/Pool.h"
@@ -22,9 +23,10 @@ GameLogic::~GameLogic()
 
 void GameLogic::BuildPool(int size, int mines)
 {
+  this->mines = mines;
+  
   // Building pool
   this->pool = new Pool(size, this);
-  
   
   // Filling with mines
   while (mines > 0)
@@ -45,6 +47,7 @@ void GameLogic::BuildPool(int size, int mines)
   
   //filling with bugs
   this->pool->fillWithBugs();
+  this->bugs = size*size; // On pool we hawe that many bugs
 }
 
 void GameLogic::ClickLadyBug()
@@ -53,7 +56,7 @@ void GameLogic::ClickLadyBug()
   if(bug != NULL)
   {
     bug->Click();
-    }
+  }
 }
 
 void GameLogic::StartedBug(int col, int row)
@@ -71,6 +74,17 @@ void GameLogic::StartedBug(int col, int row)
         bug->NeightbourCall();
       }
     }
+  }
+  if (this->pool->getCellValue(col, row) == Pool::MineCode)
+  {
+    std::cout<<"You lost the game!!\n";
+    std::cout <<"And who is the bugmaster? Who? WHO!!!"<<std::endl;
+  }
+  this->bugs--;
+  if(this->bugs == this->mines)
+  {
+    std::cout<<"NNOOOOOOOooooooo.......\n";
+    std::cout<<"Ok, you won this time."<<std::endl;
   }
 }
 

@@ -14,6 +14,9 @@ public:
   float getRandom();
   
 private:
+  int checkPoolValue(int col, int row);
+  int endGame(bool isWinning);
   Pool* pool;
-  
+  int bugs;
+  int mines;
 };
