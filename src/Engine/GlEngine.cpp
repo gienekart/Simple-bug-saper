@@ -94,7 +94,7 @@ void GlEngine::SelectingScene()
     glPushMatrix();
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();                                // Reset The Projection Matrix
-    gluPickMatrix(position.x, viewport[3] - position.y, 30, 30, viewport);
+    gluPickMatrix(position.x, viewport[3] - position.y, 2, 2, viewport);
     gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);
     glMatrixMode(GL_MODELVIEW);
     
@@ -109,7 +109,7 @@ void GlEngine::SelectingScene()
      
      
     int hits = glRenderMode(GL_RENDER);
-    int a = hits;
+    GlEngine::CaclulateSelection(hits);
     
     // Returning default settigns
     glMatrixMode(GL_PROJECTION);
@@ -123,14 +123,14 @@ void GlEngine::CaclulateSelection(int hits)
   if (hits <= 0)
     return;
 
-  int n = 1;
-  double minz = selectBuf[1];
+  int n = selectBuf[3];
+  GLuint minz = selectBuf[1];
   for (int i = 1; i < hits; i++)
   {
-    if (selectBuf[1 + i * 4] < minz)
+    if (selectBuf[i * 4 + 1] < minz)
     {
-      n = i;
-      minz = selectBuf[1 + i * 4];
+      n = selectBuf[i * 4 + 3];
+      minz = selectBuf[i * 4 + 1];
     }
   }
   ObjectMgr::getMgr()->selectObiectNumber(n);
