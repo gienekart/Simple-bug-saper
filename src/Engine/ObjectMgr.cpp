@@ -32,6 +32,11 @@ void ObjectMgr::add(Object* objectToAdd)
     this->loadedObjects.push_back(objectToAdd);
 }
 
+void ObjectMgr::addUsable(Object* objectToAdd)
+{
+    this->usableObjects.push_back(objectToAdd);
+}
+
 void ObjectMgr::remove(Object* objectToRemove)
 {
     this->loadedObjects.remove(objectToRemove);
@@ -59,11 +64,24 @@ float ObjectMgr::update()
 void ObjectMgr::redraw(bool isHitMode)
 {
     int index = 1;
-    list<Object*>::iterator current;
-    current = this->loadedObjects.begin();
+    std::list<Object*>* list;
+    
+    // Changing list of models to rendering 
+    // depending on mode
+    if(isHitMode == false)
+    {
+      list = &(this->loadedObjects);
+    }
+    else
+    {
+      list = &(this->usableObjects);
+    };
+    
+    std::list<Object*>::iterator current;
+    current = list->begin();
 
-    list<Object*>::iterator end;
-    end = this->loadedObjects.end();
+    std::list<Object*>::iterator end;
+    end = list->end();
 
     for(;current != end; current++)
     {
@@ -78,8 +96,8 @@ void ObjectMgr::redraw(bool isHitMode)
 
 void ObjectMgr::selectObiectNumber(int number)
 {
-  std::list<Object*>::iterator current = this->loadedObjects.begin();
-  std::list<Object*>::iterator end = this->loadedObjects.end();
+  std::list<Object*>::iterator current = this->usableObjects.begin();
+  std::list<Object*>::iterator end = this->usableObjects.end();
   int counter = 0;
   for(current; current != end; current++)
   {

@@ -2,6 +2,7 @@
 #include "Engine/MeshMgr.h"
 #include "Engine/MaterialMgr.h"
 #include "Game/GameLogic.h"
+#include "Engine/ObjectMgr.h"
 
 
 const float LadyBug::colorAnimationLenght = 1;
@@ -16,6 +17,7 @@ LadyBug::LadyBug(GameLogic* logicToInform, int col, int row):logicToInform(logic
   this->material = (Material*)MaterialMgr::getMgr()->getResource("ladybug");
   this->setScale(0.4);
   this->angleVelocity = (this->logicToInform->getRandom() - 0.5) * 2;
+  ObjectMgr::getMgr()->addUsable(this);
 }
 
 LadyBug::~LadyBug()

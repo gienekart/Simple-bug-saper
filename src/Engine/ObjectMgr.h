@@ -14,6 +14,7 @@ public:
   static ObjectMgr* getMgr();
 
     void add(Object* objectToAdd);
+    void addUsable(Object* objectToAdd);
     void remove(Object* objectToRemove);
 
     float update();
@@ -22,6 +23,7 @@ public:
     void selectObiectNumber(int number);
 private:
     std::list<Object*> loadedObjects;
+    std::list<Object*> usableObjects;
     static ObjectMgr* mgr;
 };
 
