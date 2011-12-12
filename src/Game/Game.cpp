@@ -36,7 +36,7 @@ Game::~Game()
 
 void Game::frameCall(float deltaTime)
 {
-  if(this->input->isMouseClicked(InputHandler::MouseRightButton))
+  if(this->input->isMousePressed(InputHandler::MouseRightButton))
   {
     this->changeCameraHorisontal(deltaTime);
   }
@@ -72,20 +72,11 @@ void Game::frameCall(float deltaTime)
   //Display change
   this->displayAsWireframe(this->input->isPressedKey('x'));
   
-  //For testing game mecanic
-  if(this->input->isPressedKey('1'))
+  // For managing click on ladyBug
+  if(this->input->isMouseUp(InputHandler::MouseLeftButton))
   {
-    this->logic->ClickLadyBug(0,4);
+    this->logic->ClickLadyBug();
   }
-  if(this->input->isPressedKey('2'))
-  {
-    this->logic->ClickLadyBug(0,0);
-  }
-  if(this->input->isPressedKey('3'))
-  {
-    this->logic->ClickLadyBug(1,1);
-  }
-  
 }
 
 void Game::changeCameraHorisontal(float deltaTime)

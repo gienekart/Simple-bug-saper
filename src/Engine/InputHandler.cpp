@@ -15,22 +15,33 @@ InputHandler* InputHandler::getInputHandler()
 }
 
 InputHandler::InputHandler():pressedKeys(256), pressedSpecialKeys(256), 
-    pressedInMouse(MouseEnumSize)
+    pressedInMouse(MouseEnumSize), lastPressedKeys(256), lastPressedSpecialKeys(256), 
+    lastPressedInMouse(MouseEnumSize)
 {
   for(int i=0; i<256; i++ )
   {
     pressedKeys[i] = false;
     pressedSpecialKeys[i] = false;
+    lastPressedKeys[i] = false;
+    lastPressedSpecialKeys[i] = false;
   }
   for(int i=0; i<MouseEnumSize; i++ )
   {
     pressedInMouse[i] = false;
+    lastPressedInMouse[i] = false;
   }
 }
 
 InputHandler::~InputHandler()
 {
   
+}
+
+void InputHandler::frameUpdate()
+{
+  this->lastPressedKeys = this->pressedKeys;
+  this->lastPressedSpecialKeys = this->pressedSpecialKeys;
+  this->lastPressedInMouse = this->pressedInMouse;
 }
 
 void InputHandler::keyPressed(unsigned char key, int x, int y)
@@ -51,16 +62,6 @@ void InputHandler::keySpecialPressed(int key, int x, int y)
 void InputHandler::keySpecialUp(int key, int x, int y)
 {
   InputHandler::handler->pressedSpecialKeys[key] = false;
-}
-
-bool InputHandler::isPressedKey(unsigned char keyCode)
-{
-  return this->pressedKeys[keyCode];
-}
-
-bool InputHandler::isPressedSpecial(int keyIndex)
-{
-  return this->pressedSpecialKeys[keyIndex];
 }
 
 void InputHandler::MouseButton(int button, int state, int x, int y)
@@ -94,10 +95,54 @@ void InputHandler::MouseMotion(int x, int y)
   myhandler->RecalcMouseMove(x, y);
 }
 
-bool InputHandler::isMouseClicked(MouseKey key)
+
+bool InputHandler::isPressedKey(unsigned char keyCode)
 {
-  return this->pressedInMouse[key];
+  return (this->pressedKeys[keyCode] && this->lastPressedKeys[keyCode]);
 }
+
+bool InputHandler::isPressedSpecial(int keyIndex)
+{
+  return (this->pressedSpecialKeys[keyIndex] && this->lastPressedSpecialKeys[keyIndex]);
+}
+
+bool InputHandler::isMousePressed(MouseKey key)
+{
+  return (this->pressedInMouse[key] && this->lastPressedInMouse[key]);
+}
+
+
+bool InputHandler::isUpKey(unsigned char keyCode)
+{
+  return (!this->pressedKeys[keyCode] && this->lastPressedKeys[keyCode]);
+}
+
+bool InputHandler::isUpSpecial(int keyIndex)
+{
+  return (!this->pressedSpecialKeys[keyIndex] && this->lastPressedSpecialKeys[keyIndex]);
+}
+
+bool InputHandler::isMouseUp(MouseKey key)
+{
+  return (!this->pressedInMouse[key] && this->lastPressedInMouse[key]);
+}
+
+
+bool InputHandler::isDownKey(unsigned char keyCode)
+{
+  return (this->pressedKeys[keyCode] && !this->lastPressedKeys[keyCode]);
+}
+
+bool InputHandler::isDownSpecial(int keyIndex)
+{
+  return (this->pressedSpecialKeys[keyIndex] && !this->lastPressedSpecialKeys[keyIndex]);
+}
+
+bool InputHandler::isMouseDown(MouseKey key)
+{
+  return (this->pressedInMouse[key] && !this->lastPressedInMouse[key]);
+}
+
 
 Mouse2D InputHandler::getLastMouseMotion()
 {

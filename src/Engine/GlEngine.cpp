@@ -58,6 +58,7 @@ void GlEngine::redraw()
 {
     float daltaTime = ObjectMgr::getMgr()->update();
     GlEngine::engine->logicToCall->frameCall(daltaTime);
+    InputHandler::getInputHandler()->frameUpdate();
     
     SelectingScene();
     RenderingScene();

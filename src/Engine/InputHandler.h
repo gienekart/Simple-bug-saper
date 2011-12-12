@@ -31,9 +31,19 @@ public:
   static void MouseButton(int button, int state, int x, int y);
   static void MouseMotion(int x, int y);
   
+  void frameUpdate();
+  
   bool isPressedKey(unsigned char keyCode);
   bool isPressedSpecial(int keyIndex);
-  bool isMouseClicked(MouseKey key);
+  bool isMousePressed(MouseKey key);
+  
+  bool isDownKey(unsigned char keyCode);
+  bool isDownSpecial(int keyIndex);
+  bool isMouseDown(MouseKey key);
+  
+  bool isUpKey(unsigned char keyCode);
+  bool isUpSpecial(int keyIndex);
+  bool isMouseUp(MouseKey key);
   
   Mouse2D getLastMousePosition();
   Mouse2D getLastMouseMotion();
@@ -47,6 +57,9 @@ private:
   std::vector<bool> pressedKeys;
   std::vector<bool> pressedSpecialKeys;
   std::vector<bool> pressedInMouse;
+  std::vector<bool> lastPressedKeys;
+  std::vector<bool> lastPressedSpecialKeys;
+  std::vector<bool> lastPressedInMouse;
   Mouse2D lastPosition;
   Mouse2D lastMove;
 };

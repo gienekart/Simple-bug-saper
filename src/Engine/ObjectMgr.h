@@ -21,9 +21,12 @@ public:
     void redraw(bool isHitMode);
     
     void selectObiectNumber(int number);
+    Object* getSelectedObject();
 private:
     std::list<Object*> loadedObjects;
     std::list<Object*> usableObjects;
+    Object* selected;
+    
     static ObjectMgr* mgr;
 };
 

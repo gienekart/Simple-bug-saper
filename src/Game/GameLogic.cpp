@@ -5,7 +5,8 @@
 #include "Game/Pool.h"
 #include "Game/ladybug.h"
 #include "Game/button.h"
-#include "Game.h"
+#include "Game/Game.h"
+#include "Engine/ObjectMgr.h"
 
 int tab [][2] = {{1,1},{3,3},{1,2}};
 int myneightbours[][2] = {{-1,-1}, {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}};
@@ -46,10 +47,13 @@ void GameLogic::BuildPool(int size, int mines)
   this->pool->fillWithBugs();
 }
 
-void GameLogic::ClickLadyBug(int col, int row)
+void GameLogic::ClickLadyBug()
 {
-  LadyBug* bug = this->pool->getLadyBug(col, row);
-  bug->Click();
+  LadyBug* bug = (LadyBug*)ObjectMgr::getMgr()->getSelectedObject();
+  if(bug != NULL)
+  {
+    bug->Click();
+    }
 }
 
 void GameLogic::StartedBug(int col, int row)

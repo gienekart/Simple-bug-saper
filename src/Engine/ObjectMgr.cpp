@@ -105,7 +105,14 @@ void ObjectMgr::selectObiectNumber(int number)
     if(counter == number)
     {
       (*current)->select();
+      this->selected = (*current);
       return;
     }
   }
+  this->selected = NULL;
+}
+
+Object* ObjectMgr::getSelectedObject()
+{
+  return this->selected;
 }
