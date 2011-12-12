@@ -1,3 +1,4 @@
+#include "Engine/GlEngine.h"
 #include "Game/ladybug.h"
 #include "Engine/MeshMgr.h"
 #include "Engine/MaterialMgr.h"
@@ -11,7 +12,7 @@ const float LadyBug::flyAnimationHeight = 30;
 const float LadyBug::informationDelay = 0.03;
 
 LadyBug::LadyBug(GameLogic* logicToInform, int col, int row):logicToInform(logicToInform),
-    col(col),row(row),informedAboutFly(false), isFlying(false)
+    col(col),row(row),informedAboutFly(false), isFlying(false), state(notClicked)
 {
   this->mesh = (Mesh*)MeshMgr::getMgr()->getResource("ladybug");
   this->material = (Material*)MaterialMgr::getMgr()->getResource("ladybug");
@@ -78,4 +79,32 @@ void LadyBug::NeightbourCall()
   this->state = ClickedTwice;
   this->animationTime = 0;
   this->isFlying = true;
+}
+
+void LadyBug::Render()
+{
+  //setting position
+  glPushMatrix();
+  glTranslatef(this->pos.x, this->pos.y, this->pos.z);
+
+  //setting up material
+  this->material->Render();
+  
+  //Setting object scale
+  GLuint shader = this->material->getShaderHandler();
+  GLint scaleLocation = glGetUniformLocationARB(shader, "objectScale");
+  glUniform1fARB(scaleLocation, this->scale);
+  GLint angleLocation = glGetUniformLocationARB(shader, "objectAngle");
+  glUniform1fARB(angleLocation, this->angle);
+  GLint selectionLocation = glGetUniformLocationARB(shader, "objectSelection");
+  glUniform1fARB(selectionLocation, this->selection);
+  GLint textureMixLocation = glGetUniformLocationARB(shader, "textureMix");
+  glUniform1fARB(textureMixLocation, this->colorMix);
+
+  //render geometry with current material sets
+  this->mesh->Render();
+
+  //remove changes
+  glPopMatrix();
+  glFlush();
 }

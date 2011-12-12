@@ -17,7 +17,8 @@ MaterialMgr* MaterialMgr::getMgr()
   {
     MaterialMgr::mgr = new MaterialMgr();
   }
-  
+  // It's for objects with no second texture.
+  TextureMgr::getMgr()->getResource("black");
   return MaterialMgr::mgr;
 }
 
@@ -46,6 +47,10 @@ Resource* MaterialMgr::createResource(const std::string& name)
     if(slot == color0)
     {
       materialData.color = (Texture*)TextureMgr::getMgr()->getResource(value);
+    }
+    else if (slot == color1)
+    {
+      materialData.color2 = (Texture*)TextureMgr::getMgr()->getResource(value);
     }
     else if (slot == shader)
     {

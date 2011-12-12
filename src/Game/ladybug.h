@@ -14,6 +14,7 @@ public:
   void NeightbourCall();
   
   virtual void Update(float deltaTime);
+  virtual void Render();
   
 private:
   enum ClickedMeaning
