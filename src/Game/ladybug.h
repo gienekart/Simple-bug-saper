@@ -14,7 +14,6 @@ public:
   void NeightbourCall();
   
   virtual void Update(float deltaTime);
-  virtual void Render();
   
 private:
   enum ClickedMeaning
@@ -25,7 +24,6 @@ private:
   };
   
   GameLogic* logicToInform;
-  float colorMix;
   ClickedMeaning state;
   float animationTime;
   bool informedAboutFly;

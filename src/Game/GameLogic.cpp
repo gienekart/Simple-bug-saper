@@ -8,7 +8,6 @@
 #include "Game/Game.h"
 #include "Engine/ObjectMgr.h"
 
-int tab [][2] = {{1,1},{3,3},{1,2}};
 int myneightbours[][2] = {{-1,-1}, {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}};
 
 GameLogic::GameLogic():pool(NULL)
@@ -26,16 +25,17 @@ void GameLogic::BuildPool(int size, int mines)
   // Building pool
   this->pool = new Pool(size, this);
   
+  
   // Filling with mines
   while (mines > 0)
   {
-    mines--;
     //TODO propper random, but for tests now is good
-    int col = tab[mines][0];
-    int row = tab[mines][1];
+    int col = (int)(this->getRandom()*size);
+    int row = (int)(this->getRandom()*size);
     
     if(this->pool->getObject(col, row) == NULL)
     {
+      mines--;
       this->pool->putMine(col, row);
     }
   }

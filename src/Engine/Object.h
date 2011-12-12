@@ -36,6 +36,7 @@ protected:
   float scale;
   float angle;
   float selection;
+  float colorMix;
 
   Object::position pos;
 private:

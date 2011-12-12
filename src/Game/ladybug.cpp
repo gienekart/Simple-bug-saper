@@ -81,30 +81,3 @@ void LadyBug::NeightbourCall()
   this->isFlying = true;
 }
 
-void LadyBug::Render()
-{
-  //setting position
-  glPushMatrix();
-  glTranslatef(this->pos.x, this->pos.y, this->pos.z);
-
-  //setting up material
-  this->material->Render();
-  
-  //Setting object scale
-  GLuint shader = this->material->getShaderHandler();
-  GLint scaleLocation = glGetUniformLocationARB(shader, "objectScale");
-  glUniform1fARB(scaleLocation, this->scale);
-  GLint angleLocation = glGetUniformLocationARB(shader, "objectAngle");
-  glUniform1fARB(angleLocation, this->angle);
-  GLint selectionLocation = glGetUniformLocationARB(shader, "objectSelection");
-  glUniform1fARB(selectionLocation, this->selection);
-  GLint textureMixLocation = glGetUniformLocationARB(shader, "textureMix");
-  glUniform1fARB(textureMixLocation, this->colorMix);
-
-  //render geometry with current material sets
-  this->mesh->Render();
-
-  //remove changes
-  glPopMatrix();
-  glFlush();
-}
