@@ -20,6 +20,8 @@ public:
                    float targetX, float targetY, float targetZ);
     void setExternLogic(ExternLogic* logicToCall);
     void setShowMode(GLuint glModeCode);
+    
+    static bool canWork();
 
     static GLuint png_texture(const char *filename);
     static GLuint load_shader(const char *vertexProg, const char *fragmentProg);

@@ -38,6 +38,13 @@ GlEngine::~GlEngine()
     
 }
 
+bool GlEngine::canWork()
+{
+  const char* version = (char*)gluGetString(GLU_VERSION);
+  //const GLubyte* version = glGetString(GL_);
+  return atof(version) >= 1.3;
+}
+
 void GlEngine::run()
 {
     glutMainLoop(); /* Start GLUT event-processing loop */
