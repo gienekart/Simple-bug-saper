@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GLee.h>
+#include "GLee.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>

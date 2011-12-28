@@ -59,6 +59,7 @@ set(HDRS_littleGLEngine
   ${engine_src_DIR}/GLHelpers.h
   ${engine_src_DIR}/InputHandler.h
   ${engine_src_DIR}/ExternLogic.h
+  ${engine_src_DIR}/GLee.h
 )
 set(SRCS_littleGLEngine
   ${engine_src_DIR}/Object.cpp
