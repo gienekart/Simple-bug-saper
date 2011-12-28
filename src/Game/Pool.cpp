@@ -1,9 +1,7 @@
-#include <X11/X.h>
-
 #include "Game/Pool.h"
 #include "Game/ladybug.h"
 #include "Game/button.h"
-#include "Mine.h"
+#include "Game/Mine.h"
 
 const float Pool::BugSize = 1;
 const int Pool::MineCode = -1;

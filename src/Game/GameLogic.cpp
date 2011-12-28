@@ -2,11 +2,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include "Game/GameLogic.h"
-#include "Game/Mine.h"
 #include "Game/Pool.h"
-#include "Game/ladybug.h"
-#include "Game/button.h"
-#include "Game/Game.h"
 #include "Engine/ObjectMgr.h"
 
 int myneightbours[][2] = {{-1,-1}, {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}};

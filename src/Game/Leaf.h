@@ -1,7 +1,5 @@
+#pragma once
 #include "Engine/Object.h"
-
-#ifndef LEAF_H
-#define LEAF_H
 
 class Leaf : public Object
 {
@@ -9,5 +7,3 @@ public:
     Leaf();
     virtual ~Leaf();
 };
-
-#endif

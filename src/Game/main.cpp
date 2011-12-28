@@ -1,7 +1,4 @@
 #include "Engine/GlEngine.h"
-#include "Game/Leaf.h"
-#include "Game/button1.h"
-#include "Game/ladybug.h"
 #include "Game/Game.h"
 #include <iostream>
 

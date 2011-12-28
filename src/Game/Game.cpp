@@ -1,8 +1,6 @@
 #include <math.h>
 #include "Game/Game.h"
-#include "Engine/InputHandler.h"
 #include "Engine/GlEngine.h"
-#include "button.h"
 
 const float Game::VerticalSpeed = 3.5;
 const float Game::BasicPointSpeed = 4;

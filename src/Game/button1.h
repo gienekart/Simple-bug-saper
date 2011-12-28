@@ -1,8 +1,7 @@
 //#pragma once
 #include "Game/button.h"
 
-#ifndef BUTTON1_H
-#define BUTTON1_H
+#pragma once
 
 class InfoButton: public Button
 {
@@ -15,5 +14,3 @@ public:
 private:
   static const float changeSpeed;
 };
-
-#endif
