@@ -10,7 +10,6 @@ class glHelp
 {
 public:
   static GLuint MakePngTexture(const char *filename);
-  //static GLuint LoadShader(const char* vertexProg, const char* fragmentProg);
   static GLuint MakeShader(GLuint shaderType, const char* shaderCode);
   static GLuint MakeShaderProgram(GLuint fragmentNo=0, GLuint vertexNo=0);
 };

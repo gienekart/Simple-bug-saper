@@ -1,5 +1,8 @@
-#include "Engine/GlEngine.h"
+#include "Engine/GLHelpers.h"
 #include "Engine/Object.h"
+#include "Engine/ObjectMgr.h"
+#include "Engine/Mesh.h"
+#include "Engine/Material.h"
 
 Object::Object() : mesh(NULL), material(NULL), scale(1), angle(0), selection(0), 
     colorMix(0)

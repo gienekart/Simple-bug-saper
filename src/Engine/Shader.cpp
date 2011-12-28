@@ -3,9 +3,6 @@
 
 Shader::Shader(std::string name, Shader::shaderData* data):Resource(name)
 {
-  //this->shaderProgramNumber = glHelp::LoadShader(data->vertexShader.c_str(), 
-  //    data->fragmentShader.c_str()); 
-  
   this->shaderProgramNumber = glHelp::MakeShaderProgram(data->fragmentShader, 
       data->vertexShader);
 }

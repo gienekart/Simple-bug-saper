@@ -1,5 +1,7 @@
-#include "Engine/GlEngine.h"
+#include "Engine/GLHelpers.h"
 #include "Engine/Material.h"
+#include "Engine/Texture.h"
+#include "Engine/Shader.h"
 
 Material::Material(std::string name, Material::materialData* data) : Resource(name), data(*data)
 {

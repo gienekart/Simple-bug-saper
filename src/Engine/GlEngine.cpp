@@ -5,15 +5,10 @@
 #include "Engine/GlEngine.h"
 #include "Engine/Timer.h"
 #include "Engine/InputHandler.h"
+#include "Engine/ObjectMgr.h"
+#include "Engine/ExternLogic.h"
 
 #define SELECT_BUFF_SIZE 4096 //should be more than enough
-
-static void (*my_glGenProgramsARB)(GLuint, GLuint *) = NULL;
-static void (*my_glBindProgramARB)(GLuint, GLuint) = NULL;
-static void (*my_glProgramStringARB)(GLuint, GLuint, GLint, const GLbyte *) = NULL;
-
-static void (*my_glActiveTextureARB)(GLenum) = NULL;
-static void (*my_glMultiTexCoord3fARB)(GLenum, GLfloat, GLfloat, GLfloat) = NULL;
 
 GlEngine* GlEngine::engine = NULL;
 GLuint selectBuf[SELECT_BUFF_SIZE]; 
@@ -41,7 +36,6 @@ GlEngine::~GlEngine()
 bool GlEngine::canWork()
 {
   const char* version = (char*)gluGetString(GLU_VERSION);
-  //const GLubyte* version = glGetString(GL_);
   return atof(version) >= 1.3;
 }
 
@@ -188,10 +182,8 @@ void GlEngine::init(int argc, char **argv)
 
     this->windowHandle = glutCreateWindow(argv[0]);
     
-    // register GLUT callback functions void (listenerTyp ::*p_func)()
+    // register GLUT callback functions
     glutDisplayFunc(&(GlEngine::redraw));
-    //glutTimerFunc(100, timerCB, 100);             // redraw only every given millisec
-    //glutReshapeFunc(reshapeCB);
     glutKeyboardFunc(&(InputHandler::keyPressed));
     glutKeyboardUpFunc(&(InputHandler::keyUp));
     glutSpecialFunc(&(InputHandler::keySpecialUp));
@@ -212,26 +204,19 @@ void GlEngine::init(int argc, char **argv)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glShadeModel(GL_SMOOTH);
 
-     // track material ambient and diffuse from surface color, call it before glEnable(GL_COLOR_MATERIAL)
-    //glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    //glEnable(GL_COLOR_MATERIAL);
-
     glClearColor(0, 0, 0, 1);                   // background color
-    //glClearStencil(0);                          // clear stencil buffer
     glClearDepth(1.0f);                         // 0 is near, 1 is far
     glDepthFunc(GL_LEQUAL);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();                                // Reset The Projection Matrix
+    glLoadIdentity(); // Reset The Projection Matrix
 
-    gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);        // Calculate The Aspect Ratio Of The Window
+    gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f); // Calculate The Aspect Ratio Of The Window
     glMatrixMode(GL_MODELVIEW);
 
     this->initLights();
     this->initBasicMaterial();
-    
-    //initialize other components
 }
 
 void GlEngine::initBasicMaterial()

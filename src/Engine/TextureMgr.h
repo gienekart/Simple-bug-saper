@@ -1,7 +1,6 @@
-#include "Engine/ResourceMgr.h"
+#pragma once
 
-#ifndef TEXTUREMGR_H
-#define TEXTUREMGR_H
+#include "Engine/ResourceMgr.h"
 
 class TextureMgr: public ResourceMgr
 {
@@ -11,5 +10,3 @@ private:
   virtual Resource* createResource(const std::string& name);
   static TextureMgr* mgr;
 };
-
-#endif

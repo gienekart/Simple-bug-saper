@@ -1,5 +1,7 @@
+#include "Engine/Object.h"
 #include "Engine/ObjectMgr.h"
 #include "Engine/Timer.h"
+#include <GL/gl.h>
 
 using namespace std;
 

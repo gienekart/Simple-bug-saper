@@ -1,4 +1,4 @@
-#include "Engine/GlEngine.h"
+#include "Engine/GLHelpers.h"
 #include "Engine/TextureMgr.h"
 #include "Engine/Texture.h"
 

@@ -1,10 +1,7 @@
+#pragma once
+
 #include "Engine/Resource.h"
 #include <GL/gl.h>
-
-#ifndef SHADER_H
-#define SHADER_H
-
-//TODO all shader
 
 class Shader: public Resource
 {
@@ -29,5 +26,3 @@ public:
 private:
   GLuint shaderProgramNumber;
 };
-
-#endif

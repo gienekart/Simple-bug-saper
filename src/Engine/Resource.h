@@ -1,7 +1,6 @@
-#include <string>
+#pragma once
 
-#ifndef RESOURCE_H
-#define RESOURCE_H
+#include <string>
 
 class Resource
 {
@@ -15,5 +14,3 @@ public:
 private:
   std::string name;
 };
-
-#endif

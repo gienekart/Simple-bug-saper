@@ -1,8 +1,7 @@
+#pragma once
+
 #include "Engine/Resource.h"
 #include <map>
-
-#ifndef RESOURCEMGR_H
-#define RESOURCEMGR_H
 
 class ResourceMgr
 {
@@ -15,5 +14,3 @@ protected:
   virtual Resource* createResource(const std::string& name)=0;
   std::map<std::string, Resource*> objects;
 };
-
-#endif

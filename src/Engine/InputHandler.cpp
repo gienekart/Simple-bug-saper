@@ -1,4 +1,3 @@
-
 #include "Engine/InputHandler.h"
 #include <GL/glut.h>
 

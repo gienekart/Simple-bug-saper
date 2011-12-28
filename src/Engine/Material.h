@@ -1,10 +1,11 @@
 #include "Engine/Resource.h"
-#include "Engine/Texture.h"
-#include "Engine/Shader.h"
 #include <GL/gl.h>
 
 #ifndef MATERIAL_H
 #define MATERIAL_H
+
+class Texture;
+class Shader;
 
 class Material: public Resource
 {

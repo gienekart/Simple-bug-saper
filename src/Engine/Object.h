@@ -1,9 +1,7 @@
-#include <vector>
-#include <GL/gl.h>
-#include "Engine/Mesh.h"
+#pragma once
 
-#ifndef OBJECT_H
-#define OBJECT_H
+class Mesh;
+class Material;
 
 class Object {
 public:
@@ -42,5 +40,3 @@ protected:
 private:
   void registerObject();
 };
-
-#endif

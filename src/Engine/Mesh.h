@@ -1,10 +1,8 @@
+#pragma once
+
 #include "Engine/Resource.h"
-#include "Engine/Material.h"
 #include <vector>
 #include <GL/gl.h>
-
-#ifndef MESH_H
-#define MESH_H
 
 class Mesh: public Resource
 {
@@ -28,5 +26,3 @@ private:
     std::vector<GLfloat> vertexNormals;
     std::vector<GLushort> vertexIndexes;
 };
-
-#endif 

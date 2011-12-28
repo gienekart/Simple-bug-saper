@@ -1,11 +1,9 @@
+#pragma once
 
 #include <stdio.h>
 #include "Engine/GLHelpers.h"
-#include "Engine/ObjectMgr.h"
-#include "Engine/ExternLogic.h"
 
-#ifndef GLENGINE_H
-#define GLENGINE_H
+class ExternLogic;
 
 class GlEngine
 {
@@ -14,7 +12,6 @@ public:
     ~GlEngine();
 
     void init(int argc, char **argv);
-    void changeMode(int );
     void run();
     void setCamera(float posX, float posY, float posZ,
                    float targetX, float targetY, float targetZ);
@@ -22,9 +19,6 @@ public:
     void setShowMode(GLuint glModeCode);
     
     static bool canWork();
-
-    static GLuint png_texture(const char *filename);
-    static GLuint load_shader(const char *vertexProg, const char *fragmentProg);
 
     enum GLMode
     {
@@ -37,7 +31,6 @@ private:
     static void redraw();
     void initLights();
     static void iddle();
-    static char * load_program_string(const char *filename);
     void initBasicMaterial();
     static void RenderingScene();
     static void SelectingScene();
@@ -48,4 +41,3 @@ private:
     static const int height = 600;
     static const int width = 800;
 };
-#endif

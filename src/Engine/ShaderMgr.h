@@ -1,7 +1,6 @@
-#include "Engine/ResourceMgr.h"
+#pragma once
 
-#ifndef SHADERMGR_H
-#define SHADERMGR_H
+#include "Engine/ResourceMgr.h"
 
 class ShaderMgr: public ResourceMgr
 {
@@ -12,5 +11,3 @@ private:
   Resource* createShaderPart(const std::string& name, GLuint type);
   static ShaderMgr* mgr;
 };
-
-#endif

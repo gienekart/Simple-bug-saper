@@ -1,6 +1,5 @@
 #include <fstream>
 #include <sstream>
-#include <string>
 #include "Engine/MeshMgr.h"
 #include "Engine/Mesh.h"
 #include "rapidxml/rapidxml.hpp"

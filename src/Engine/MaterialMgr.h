@@ -1,7 +1,6 @@
-#include "Engine/ResourceMgr.h"
+#pragma once
 
-#ifndef MATERIALMGR_H
-#define MATERIALMGR_H
+#include "Engine/ResourceMgr.h"
 
 class MaterialMgr: public ResourceMgr
 {
@@ -11,5 +10,3 @@ private:
   virtual Resource* createResource(const std::string& name);
   static MaterialMgr* mgr;
 };
-
-#endif

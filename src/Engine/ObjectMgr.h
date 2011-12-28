@@ -1,9 +1,8 @@
-#include "Engine/Object.h"
-#include <list>
-#include <string>
+#pragma once
 
-#ifndef OBJECTMGR_H
-#define OBJECTMGR_H
+#include <list>
+
+class Object;
 
 class ObjectMgr
 {
@@ -29,5 +28,3 @@ private:
     
     static ObjectMgr* mgr;
 };
-
-#endif
