@@ -16,3 +16,9 @@ version 0.2
 - fixed bugs with many textures shown by one fragment shader (basic fail).
 - minor changes in almost all resources groups, especially with shaders
   so now one fragment/vertex shader can be shared by many shader programs.
+
+version RC1
+- selection of models work
+- all game logic work
+- checking if current OpenGL is 1.3 or higher work
+- cleaning all code from trashes from developing done
